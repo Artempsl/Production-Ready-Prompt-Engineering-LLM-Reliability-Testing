@@ -1,0 +1,96 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:32:01.607148
+Model: gpt-4o-mini
+Number of runs: 10
+Temperature: 0.7
+
+Prompt:
+------------------------------------------------------------
+Extract information from this customer feedback: "I ordered item #12345 on March 15th. The delivery was fast but the packaging was damaged.
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.003930) ---
+Here’s the extracted information from the customer feedback:
+
+- **Order Number**: #12345
+- **Order Date**: March 15th
+- **Delivery Speed**: Fast
+- **Packaging Condition**: Damaged
+
+--- Response 2 (Cost: $0.003930) ---
+Here is the extracted information from the customer feedback:
+
+- **Order Number**: #12345
+- **Order Date**: March 15th
+- **Delivery Speed**: Fast
+- **Packaging Condition**: Damaged
+
+--- Response 3 (Cost: $0.003450) ---
+**Customer Feedback Summary:**
+
+- **Order Number:** #12345
+- **Order Date:** March 15th
+- **Delivery Speed:** Fast
+- **Issue:** Damaged packaging
+
+--- Response 4 (Cost: $0.003930) ---
+Here is the extracted information from the customer feedback:
+
+- **Order Number**: #12345
+- **Order Date**: March 15th
+- **Delivery Speed**: Fast
+- **Issue**: Damaged packaging
+
+--- Response 5 (Cost: $0.003930) ---
+Here is the extracted information from the customer feedback:
+
+- **Order Number**: #12345
+- **Order Date**: March 15th
+- **Delivery Speed**: Fast
+- **Packaging Condition**: Damaged
+
+--- Response 6 (Cost: $0.003630) ---
+Here's the extracted information from the customer feedback:
+
+- **Order Number:** #12345
+- **Order Date:** March 15th
+- **Delivery Speed:** Fast
+- **Packaging Condition:** Damaged
+
+--- Response 7 (Cost: $0.003690) ---
+Here is the extracted information from the customer feedback:
+
+- **Order Number:** #12345
+- **Order Date:** March 15th
+- **Delivery Speed:** Fast
+- **Packaging Condition:** Damaged
+
+--- Response 8 (Cost: $0.003930) ---
+Here is the extracted information from the customer feedback:
+
+- **Order Number**: #12345
+- **Order Date**: March 15th
+- **Delivery Speed**: Fast
+- **Issue**: Damaged packaging
+
+--- Response 9 (Cost: $0.003930) ---
+Here is the extracted information from the customer feedback:
+
+- **Order Number**: #12345
+- **Order Date**: March 15th
+- **Delivery Speed**: Fast
+- **Packaging Condition**: Damaged
+
+--- Response 10 (Cost: $0.003870) ---
+Here are the key pieces of information extracted from the customer feedback:
+
+- **Order Number:** #12345
+- **Order Date:** March 15th
+- **Delivery Speed:** Fast
+- **Packaging Condition:** Damaged
+
+============================================================
+Total cost for 10 responses: $0.038220

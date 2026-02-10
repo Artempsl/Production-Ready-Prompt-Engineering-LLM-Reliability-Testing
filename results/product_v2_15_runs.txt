@@ -1,0 +1,49 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:43:33.024058
+Model: gpt-4o-mini
+Number of runs: 15
+Temperature: 0.5
+
+Prompt:
+------------------------------------------------------------
+Create a product description for a wireless mouse that costs $29.99.
+
+Requirements:
+- Exactly 50-75 words
+- Must include: product name, key features (at least 2), price, and target user
+- Use professional but conversational tone
+- Start with a hook that catches attention
+- End with a clear value proposition
+
+Product: Wireless Mouse ($29.99)
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.007980) ---
+Elevate your productivity with the sleek **ErgoWave Wireless Mouse**! Priced at just **$29.99**, this ergonomic design ensures comfort during long hours of use, while its advanced optical sensor delivers precise tracking on any surface. Ideal for professionals, students, or anyone seeking a clutter-free workspace, the ErgoWave seamlessly connects to your devices with a reliable wireless range. Experience the perfect blend of style and functionality—upgrade your setup today!
+
+--- Response 2 (Cost: $0.007620) ---
+Elevate your workspace with the Precision Wireless Mouse, designed for both professionals and casual users alike. Priced at just $29.99, this sleek mouse features advanced optical tracking for pinpoint accuracy and a long-lasting battery life that keeps you productive all day. Its ergonomic design ensures comfort during those long hours at the desk. Experience seamless navigation and enhance your productivity with the Precision Wireless Mouse—your ultimate companion for effortless control.
+
+--- Response 3 (Cost: $0.007440) ---
+Upgrade your workspace with the sleek **ErgoWave Wireless Mouse**! Priced at just **$29.99**, this ergonomic mouse features advanced optical tracking for precise navigation and a long-lasting battery that keeps you powered for weeks. Perfect for busy professionals and students alike, its lightweight design ensures comfort during extended use. Experience the freedom of wireless connectivity and elevate your productivity—because your work deserves the best!
+
+--- Response 4 (Cost: $0.007140) ---
+Elevate your productivity with the Precision Pro Wireless Mouse! Priced at just $29.99, this sleek and ergonomic mouse features advanced optical tracking for smooth navigation and a long-lasting battery life that keeps you connected all day. Ideal for both professionals and students, its compact design ensures comfort during extended use. Upgrade your workspace with the Precision Pro and experience the freedom of wireless convenience!
+
+--- Response 5 (Cost: $0.007980) ---
+Upgrade your workspace with the sleek and efficient **AeroGlide Wireless Mouse**! Priced at just **$29.99**, this mouse features advanced optical tracking for precision and a comfortable ergonomic design that fits perfectly in your hand. Ideal for professionals, students, and gamers alike, it offers a seamless wireless connection and long-lasting battery life. Experience the freedom of movement and enhanced productivity with the AeroGlide—your ultimate companion for daily tasks!
+
+--- Response 6 (Cost: $0.007800) ---
+Elevate your workspace with the Precision Wireless Mouse, designed for professionals and students alike. Priced at just $29.99, this sleek mouse features advanced optical tracking for smooth navigation and a battery life of up to 18 months, ensuring you stay productive without interruptions. Its ergonomic design fits comfortably in your hand, making it perfect for long hours of use. Experience seamless connectivity and enhance your workflow—your ideal companion for every task!
+
+--- Response 7 (Cost: $0.007620) ---
+Experience seamless navigation with the **ErgoWave Wireless Mouse**! Priced at just **$29.99**, this sleek device features advanced optical tracking for precision and a comfortable ergonomic design for long hours of use. Ideal for professionals and students alike, the ErgoWave ensures you stay productive without the hassle of tangled wires. Elevate your workspace and enjoy the freedom of wireless connectivity—your perfect companion for efficiency and comfort!
+
+--- Response 8 (ERROR) ---
+Failed: Budget would be exceeded. Estimated cost: $0.014370
+
+============================================================
+Total cost for 7 responses: $0.053580

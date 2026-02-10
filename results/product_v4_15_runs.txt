@@ -1,0 +1,154 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T16:38:39.570391
+Model: gpt-4o-mini
+Number of runs: 15
+Temperature: 0.1
+
+Prompt:
+------------------------------------------------------------
+You MUST follow this EXACT template with NO deviations. Use EXACTLY 60 words.
+
+TEMPLATE FORMAT (do not add/remove sentences):
+Sentence 1 (product name + key feature): [noun], [adjective]
+Sentence 2 (benefits): [verb]
+Sentence 3 (who it is for): [for target users]
+Sentence 4 (closing): [value statement]
+
+YOUR TASK - Create product description for: Wireless Mouse ($29.99)
+
+CRITICAL REQUIREMENTS:
+- Output EXACTLY 60 words (count mandatory)
+- Follow template sentences above
+- Include: product name, key feature, benefit, target audience, price
+- Use professional tone
+- No bullet points, no lists, no special characters
+- First sentence must introduce product and price
+- Second sentence must describe function/benefit
+- Third sentence must identify target user ("for")
+- Fourth sentence must end with value claim
+
+Generate ONLY the 4-sentence description. Then on new line write: WORD_COUNT: [number]
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.009000) ---
+Wireless Mouse, ergonomic: enhances comfort. Experience seamless navigation and precision control. For professionals and gamers seeking efficiency. Elevate your productivity with this affordable solution at just $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 2 (Cost: $0.009000) ---
+Wireless Mouse, ergonomic: sleek, efficient  
+Enhance productivity with seamless navigation  
+For professionals and gamers seeking precision  
+Experience comfort and performance at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 3 (Cost: $0.009360) ---
+Wireless Mouse, ergonomic: sleek, efficient  
+Enhance productivity with seamless navigation.  
+For professionals and students seeking comfort and precision.  
+Experience the freedom of wireless technology at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 4 (Cost: $0.009180) ---
+Wireless Mouse, ergonomic design: precision, comfortable  
+Enhance productivity with seamless navigation  
+For professionals and students seeking efficiency  
+Experience the freedom of wireless technology at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 5 (Cost: $0.009000) ---
+Wireless Mouse, ergonomic: sleek, efficient  
+Enhance productivity with seamless navigation  
+For professionals and students seeking comfort  
+Experience precision and style at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 6 (Cost: $0.009000) ---
+Wireless Mouse, ergonomic: sleek, efficient  
+Enhance productivity with seamless navigation  
+For professionals and students seeking convenience  
+Experience comfort and precision at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 7 (Cost: $0.009120) ---
+Wireless Mouse, ergonomic: device, efficient  
+Enhance productivity with seamless navigation.  
+For professionals and students seeking convenience.  
+Experience comfort and precision at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 8 (Cost: $0.009000) ---
+Wireless Mouse, ergonomic: sleek, efficient  
+Enhance productivity with seamless navigation  
+For professionals and students seeking convenience  
+Experience comfort and precision at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 9 (Cost: $0.009120) ---
+Wireless Mouse, ergonomic design: precision, comfortable  
+Enhance productivity with seamless navigation  
+For professionals and gamers seeking efficiency  
+Experience the perfect blend of style and functionality for just $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 10 (Cost: $0.009120) ---
+Wireless Mouse, ergonomic design: precision, comfortable  
+Enhance productivity with seamless navigation  
+For professionals and gamers seeking efficiency  
+Experience the perfect blend of style and functionality for just $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 11 (Cost: $0.009120) ---
+Wireless Mouse, ergonomic: device, efficient  
+Enhance productivity with seamless navigation.  
+For professionals and students seeking convenience.  
+Experience comfort and precision at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 12 (Cost: $0.009180) ---
+Wireless Mouse, ergonomic design: precision, comfortable  
+Enhance productivity with seamless navigation  
+For professionals and students seeking efficiency  
+Experience the freedom of wireless technology at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 13 (Cost: $0.009060) ---
+Wireless Mouse, ergonomic design: sleek, efficient  
+Enhance productivity with seamless navigation  
+For professionals and students seeking comfort  
+Experience precision and comfort at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 14 (Cost: $0.009120) ---
+Wireless Mouse, ergonomic: device, efficient  
+Enhance productivity with seamless navigation.  
+For professionals and students seeking convenience.  
+Experience comfort and precision at an affordable price of $29.99.  
+
+WORD_COUNT: 60
+
+--- Response 15 (Cost: $0.009120) ---
+Wireless Mouse, ergonomic design: precision, comfortable  
+Enhance productivity with seamless navigation  
+For professionals and gamers seeking efficiency  
+Experience the perfect blend of style and functionality for just $29.99.  
+
+WORD_COUNT: 60
+
+============================================================
+Total cost for 15 responses: $0.136500

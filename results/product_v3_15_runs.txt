@@ -1,0 +1,93 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T16:02:56.775620
+Model: gpt-4o-mini
+Number of runs: 15
+Temperature: 0.7
+
+Prompt:
+------------------------------------------------------------
+Create product descriptions following this EXACT structure and word count.
+
+EXAMPLE 1:
+Product: Wireless Keyboard ($49.99)
+Description: Meet the TypeFlow Wireless Keyboard—precision typing meets wireless freedom. Designed for professionals who demand performance, this mechanical keyboard delivers responsive keystrokes and connects effortlessly via Bluetooth. With an 80-hour battery life and premium aluminum frame, it's built for desk warriors. Perfect for remote workers and developers seeking reliability. Invest in comfort today.
+
+EXAMPLE 2:
+Product: USB-C Hub ($39.99)
+Description: The ConnectHub Pro transforms your laptop into a powerhouse. This all-in-one USB-C hub delivers four ports, supporting simultaneous charging and data transfer at blazing speeds. Compact yet robust, it's ideal for minimalists and travelers. Compatible with Mac and Windows systems. The perfect sidekick for mobile professionals who refuse to compromise.
+
+YOUR TASK (same structure):
+Product: Wireless Mouse ($29.99)
+- Keep description between 50-75 words
+- Include all key features, price, and target user
+- Use professional but inspiring tone
+- End with a strong value proposition
+
+Create the description:
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.012240) ---
+Product: Wireless Mouse ($29.99)  
+Description: Introducing the GlideTech Wireless Mouse—your ultimate companion for seamless navigation. Engineered for comfort and precision, this ergonomic mouse offers adjustable DPI settings and a long-lasting battery life. Its wireless connectivity ensures clutter-free workspaces, making it perfect for busy professionals and gamers alike. With a sleek design and responsive performance, elevate your productivity today and experience the freedom of wireless control.
+
+--- Response 2 (Cost: $0.012540) ---
+Product: Wireless Mouse ($29.99)  
+Description: Experience precision at your fingertips with the GlidePro Wireless Mouse. Engineered for seamless navigation, this ergonomic mouse features adjustable DPI settings and a long-lasting battery life. Its sleek design fits comfortably in your hand, making it perfect for graphic designers and gamers alike. With wireless connectivity, enjoy clutter-free productivity. Elevate your workspace and enhance your performance today with the GlidePro, where comfort meets functionality.
+
+--- Response 3 (Cost: $0.012720) ---
+Product: Wireless Mouse ($29.99)  
+Description: Experience the GlidePro Wireless Mouse—your ultimate companion for seamless navigation. Engineered for comfort and precision, this ergonomic mouse features a high-precision sensor and customizable buttons for enhanced productivity. With a long-lasting battery and a sleek design, it's perfect for both office settings and on-the-go tasks. Compatible with all major operating systems, it’s the ideal choice for professionals seeking efficiency. Elevate your workflow today.
+
+--- Response 4 (Cost: $0.012540) ---
+Product: Wireless Mouse ($29.99)  
+Description: Elevate your productivity with the GlidePro Wireless Mouse—crafted for seamless navigation and comfort. Featuring ultra-responsive tracking, customizable buttons, and a sleek ergonomic design, this mouse is perfect for designers and office professionals alike. With a long-lasting battery life and plug-and-play connectivity, it adapts to your workflow effortlessly. Upgrade your workspace with the GlidePro and experience the freedom of wireless efficiency today.
+
+--- Response 5 (Cost: $0.012420) ---
+Product: Wireless Mouse ($29.99)  
+Description: Elevate your workspace with the GlidePro Wireless Mouse—where ergonomics meet efficiency. Engineered for seamless navigation, this mouse features advanced optical tracking and a battery life of up to 12 months. Lightweight and portable, it's perfect for busy professionals and students on the go. Enjoy the freedom of wireless connectivity without sacrificing performance. Invest in precision and comfort today for a more productive tomorrow.
+
+--- Response 6 (Cost: $0.012360) ---
+Product: Wireless Mouse ($29.99)  
+Description: Introducing the GlidePro Wireless Mouse—where comfort meets precision. Designed for professionals and gamers alike, this ergonomic mouse features a high-precision sensor and customizable buttons for an optimized experience. With a long-lasting battery life and seamless Bluetooth connectivity, it’s perfect for those on the go. Elevate your productivity and gaming performance today with the GlidePro, your ultimate companion for effortless navigation.
+
+--- Response 7 (Cost: $0.012660) ---
+Product: Wireless Mouse ($29.99)  
+Description: Introducing the GlideMouse X—where precision meets portability. This ergonomic wireless mouse features advanced optical tracking for seamless navigation and a 12-month battery life to keep you focused. Lightweight and stylish, it's perfect for designers and gamers who require accuracy on the go. Compatible with all major operating systems, it’s the ultimate tool for productivity. Elevate your workspace with the GlideMouse X and experience effortless control today.
+
+--- Response 8 (Cost: $0.012240) ---
+Product: Wireless Mouse ($29.99)  
+Description: Experience precision and freedom with the GlideMouse Wireless. Designed for creatives and business professionals alike, this ergonomic mouse features adjustable DPI settings for optimal control and a long-lasting battery life of up to 12 months. Its sleek design fits comfortably in your hand, enhancing productivity at home or in the office. Elevate your workflow today with a device that combines style and functionality effortlessly.
+
+--- Response 9 (Cost: $0.012540) ---
+Product: Wireless Mouse ($29.99)  
+Description: Introducing the GlideTech Wireless Mouse—your ultimate companion for seamless navigation. Engineered for precision, this ergonomic mouse features adjustable DPI settings and a long-lasting battery life of up to 12 months. Its sleek design fits comfortably in your hand, making it perfect for professionals, gamers, and students alike. Elevate your productivity with swift, accurate movements. Experience effortless control today and transform your workspace!
+
+--- Response 10 (Cost: $0.012540) ---
+Product: Wireless Mouse ($29.99)  
+Description: Elevate your workspace with the GlideTech Wireless Mouse, designed for seamless navigation and superior comfort. Featuring an ergonomic design and precise optical tracking, it ensures effortless control during long hours of productivity. With a battery life of up to 12 months and wireless connectivity, it’s perfect for busy professionals and students alike. Experience the freedom of movement and enhance your workflow today. Invest in performance and comfort!
+
+--- Response 11 (Cost: $0.012180) ---
+Product: Wireless Mouse ($29.99)  
+Description: Introducing the GlideMouse Pro—your ultimate companion for precision and comfort. This ergonomic wireless mouse features advanced optical tracking, customizable buttons, and a long-lasting battery for uninterrupted productivity. Lightweight and portable, it's perfect for busy professionals and creatives on the go. Experience seamless connectivity and effortless navigation. Elevate your workspace today with the GlideMouse Pro, where performance meets style.
+
+--- Response 12 (Cost: $0.012360) ---
+Product: Wireless Mouse ($29.99)  
+Description: Introducing the GlidePoint Wireless Mouse—your ultimate companion for seamless navigation. This ergonomic mouse features a high-precision sensor and customizable buttons, delivering exceptional performance for gamers and professionals alike. With a battery life of up to 12 months and a sleek design, it's perfect for those on the go. Elevate your productivity and enjoy effortless control with every click. Experience the difference today.
+
+--- Response 13 (Cost: $0.012960) ---
+Product: Wireless Mouse ($29.99)  
+Description: Introducing the GlideTech Wireless Mouse—where precision meets portability. Designed for creatives and professionals, this ergonomic mouse features a high-precision sensor and a seamless Bluetooth connection for ultimate convenience. With a battery life of up to 12 months, it’s perfect for on-the-go productivity. Lightweight and stylish, it caters to users who value both form and function. Elevate your workflow today with a mouse that keeps pace with your ambition.
+
+--- Response 14 (Cost: $0.012300) ---
+Product: Wireless Mouse ($29.99)  
+Description: Introducing the GlideTech Wireless Mouse—a seamless blend of style and functionality. With precise tracking and an ergonomic design, this mouse enhances productivity for busy professionals and gamers alike. Featuring a long-lasting battery and customizable buttons, it adapts to your workflow effortlessly. Lightweight and portable, it's the ideal companion for on-the-go users. Elevate your computing experience and enjoy unmatched performance today.
+
+--- Response 15 (Cost: $0.012660) ---
+Product: Wireless Mouse ($29.99)  
+Description: Introducing the GlideTech Wireless Mouse—your ultimate companion for seamless navigation. Engineered with ergonomic design and precision tracking, it ensures effortless control for professionals and gamers alike. Featuring a long-lasting battery life and a sleek, portable structure, this mouse is perfect for on-the-go productivity. Compatible with all major operating systems, it’s the ideal choice for those who value efficiency. Elevate your computing experience today.
+
+============================================================
+Total cost for 15 responses: $0.187260

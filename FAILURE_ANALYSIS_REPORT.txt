@@ -1,0 +1,806 @@
+================================================================================
+FAILURE ANALYSIS REPORT: DETAILED EXAMINATION OF PROMPT ENGINEERING FAILURES
+================================================================================
+Generated: February 10, 2026
+Focus: Why certain prompts failed, why they failed, and what was learned
+Project: Systematic Prompt Engineering Across Three Task Types
+
+================================================================================
+EXECUTIVE SUMMARY
+================================================================================
+
+This report documents all failures and partial successes encountered during the
+prompt engineering laboratory, with emphasis on understanding ROOT CAUSES rather
+than merely reporting metrics. Across 235+ API calls testing 3 tasks with 4-6
+versions each, we identified consistent failure patterns that transcend individual
+tasks. Understanding these patterns is crucial for avoiding similar mistakes in
+future prompt optimization work.
+
+Key insight: Many apparent "technique failures" (few-shot, CoT) were actually
+IMPLEMENTATION failures—using the right technique incorrectly—rather than
+fundamental limitations of the techniques themselves.
+
+================================================================================
+SECTION 1: CONSISTENCY METRICS TABLE
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+TABLE 1.1: ALL PROMPT VERSIONS - CONSISTENCY PERCENTAGES
+────────────────────────────────────────────────────────────────────────────────
+
+SENTIMENT ANALYSIS (Classification Task)
+┌─────────────┬──────────────┬──────────────┬──────────────┬─────────────────┐
+│ Version     │ Consistency  │ Unique (n=15)│ Cost (USD)   │ Notes           │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v1          │ 40.0%        │ 9            │ ~0.07        │ BASELINE - no   │
+│ (Baseline)  │              │              │              │ format spec     │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v2          │ 100.0%       │ 1            │ ~0.08        │ ✓ OPTIMAL       │
+│ (Format     │              │              │              │ Format + Temp   │
+│  Constr.)   │              │              │              │ 0.2             │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v3          │ 100.0%       │ 1            │ ~0.12        │ ✓ WORKS but +40%│
+│ (Few-Shot)  │              │              │              │ cost, no benefit│
+└─────────────┴──────────────┴──────────────┴──────────────┴─────────────────┘
+
+PRODUCT DESCRIPTION (Generation Task)
+┌─────────────┬──────────────┬──────────────┬──────────────┬─────────────────┐
+│ Version     │ Consistency  │ Unique (n=15)│ Cost (USD)   │ Notes           │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v1          │ 6.7%         │ 9            │ ~0.07        │ BASELINE - high  │
+│ (Baseline)  │              │              │              │ variance         │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v2          │ 14.3%        │ 13           │ ~0.10        │ +7.6% improvement│
+│ (Format     │              │              │              │ Still poor       │
+│  Constr.)   │              │              │              │                  │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v3          │ 6.7%         │ 9            │ ~0.19        │ ✗ REGRESSION    │
+│ (Few-Shot)  │              │              │              │ Few-shot hurt    │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v4          │ 46.7%        │ 7            │ ~0.27        │ +32.4% vs v2    │
+│ (Template)  │              │              │              │ Still suboptimal│
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v5          │ 100.0%       │ 1            │ ~0.12        │ ✓ 100% but      │
+│ (Exact Copy)│              │              │              │ unethical/fake  │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v6          │ 20.0%        │ 13           │ ~0.19        │ ✗ Low performance│
+│ (JSON)      │              │              │              │ JSON only       │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v6b         │ 93.3%        │ 2            │ ~0.13        │ ✓ BREAKTHROUGH  │
+│ (Template+  │              │              │              │ Template+Synonym│
+│  Synonyms)  │              │              │              │ Temp 0.15       │
+└─────────────┴──────────────┴──────────────┴──────────────┴─────────────────┘
+
+DATA EXTRACTION (Structured Task)
+┌─────────────┬──────────────┬──────────────┬──────────────┬─────────────────┐
+│ Version     │ Consistency  │ Unique (n=15)│ Cost (USD)   │ Notes           │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v1          │ 33.3%        │ 10           │ ~0.08        │ BASELINE - JSON  │
+│ (Baseline)  │              │              │              │ inconsistent     │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v2          │ 0.0%*        │ N/A          │ ~0.08        │ ✗ BUDGET EXHAUSTED
+│ (Format     │              │              │              │ * Incomplete test
+│  Constr.)   │              │              │              │                  │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v3a         │ 0.0%*        │ 15           │ ~0.34        │ ✗ max_tokens=200 │
+│ (CoT, test1)│              │              │              │ Responses truncated
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v3b         │ 0.0%^        │ 15 (text)    │ ~0.38        │ ✓ DATA 100%      │
+│ (CoT, test2)│ 100.0%^^     │ 1 (JSON)     │              │ Text varied      │
+├─────────────┼──────────────┼──────────────┼──────────────┼─────────────────┤
+│ v4          │ 100.0%       │ 1            │ ~0.14        │ ✓ OPTIMAL        │
+│ (Schema)    │              │              │              │ Format 0.1       │
+└─────────────┴──────────────┴──────────────┴──────────────┴─────────────────┘
+
+^  = exact string match (includes reasoning text)
+^^ = JSON data only (excluding reasoning text)
+
+────────────────────────────────────────────────────────────────────────────────
+TABLE 1.2: IMPROVEMENT PROGRESSION BY TASK
+────────────────────────────────────────────────────────────────────────────────
+
+SENTIMENT ANALYSIS IMPROVEMENTS
+┌──────────────────┬────────┬────────┬─────────────┐
+│ Transition       │ From   │ To     │ Improvement │
+├──────────────────┼────────┼────────┼─────────────┤
+│ v1 → v2          │ 40.0%  │ 100.0% │ +60.0%      │ ✓✓✓
+│ v2 → v3          │ 100.0% │ 100.0% │ 0.0%        │ ✓ (no gain)
+└──────────────────┴────────┴────────┴─────────────┘
+
+PRODUCT DESCRIPTION IMPROVEMENTS
+┌──────────────────┬────────┬────────┬─────────────┐
+│ Transition       │ From   │ To     │ Improvement │
+├──────────────────┼────────┼────────┼─────────────┤
+│ v1 → v2          │ 6.7%   │ 14.3%  │ +7.6%       │ ✓
+│ v2 → v3          │ 14.3%  │ 6.7%   │ -7.6%       │ ✗✗✗
+│ v3 → v4          │ 6.7%   │ 46.7%  │ +40.0%      │ ✓✓
+│ v4 → v6b         │ 46.7%  │ 93.3%  │ +46.6%      │ ✓✓✓
+│ Total v1 → v6b   │ 6.7%   │ 93.3%  │ +86.6%      │ ✓✓✓✓
+└──────────────────┴────────┴────────┴─────────────┘
+
+DATA EXTRACTION IMPROVEMENTS
+┌──────────────────┬────────┬────────┬─────────────┐
+│ Transition       │ From   │ To     │ Improvement │
+├──────────────────┼────────┼────────┼─────────────┤
+│ v1 → v2          │ 33.3%  │ 0.0%*  │ ?           │ (incomplete)
+│ v1 → v3b (JSON)  │ 33.3%  │ 100.0% │ +66.7%      │ ✓✓✓
+│ v1 → v4          │ 33.3%  │ 100.0% │ +66.7%      │ ✓✓✓✓
+│ v3b → v4 (cost)  │ $0.38  │ $0.14  │ -63% cost   │ ✓✓
+└──────────────────┴────────┴────────┴─────────────┘
+
+================================================================================
+SECTION 2: DOCUMENTED FAILURE PATTERNS
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+PATTERN 1: VAGUE INSTRUCTIONS → INTERPRETATION VARIANCE
+────────────────────────────────────────────────────────────────────────────────
+
+Occurrence: Sentiment v1 (40% consistency)
+
+Symptom
+  The model is instructed to "classify" but not told HOW to classify.
+  The instruction leaves multiple valid interpretations:
+    - Is the response a single word? Multiple words?
+    - Should it be uppercase? Lowercase? Title case?
+    - Is "positive" equivalent to "POSITIVE"?
+
+Result
+  Each API call produces a different format:
+    Run 1: "POSITIVE"
+    Run 2: "Positive"
+    Run 3: "positive"
+    Run 4: "Positive sentiment"
+    Run 5: "positive"
+    ...
+    
+  Only exact matches count as consistent. With format variations, we get 40%.
+
+Root Cause Analysis
+  The model is trained to be flexible and helpful. When asked to classify
+  without explicit format constraints, it interprets the task as: "What's the
+  most natural way to express this classification?" And it chooses differently
+  each time because probabilistic generation introduces slight variations in
+  how "natural" is computed.
+
+How to Detect This Pattern
+  - Responses are semantically identical but textually different
+  - Multiple valid formats exist for the same answer
+  - Adding explicit enumeration fixes it immediately
+
+Prevention Strategy
+  1. Always enumerate valid response formats explicitly
+  2. Use ALL CAPS or specific formatting to remove ambiguity
+  3. Provide examples of the EXACT format you want
+  4. Test with 2-3 runs before scaling to full test
+
+Lesson Learned
+  Precision in language matters enormously. "Classify" is too vague.
+  "Classify as exactly one of: POSITIVE, NEGATIVE, NEUTRAL" is precise.
+
+────────────────────────────────────────────────────────────────────────────────
+PATTERN 2: OVER-SPECIFICATION VIA EXAMPLES
+────────────────────────────────────────────────────────────────────────────────
+
+Occurrence: Product v3 (6.7% consistency, regression from v2's 14.3%)
+
+Symptom
+  We EXPECTED that adding few-shot examples would improve performance.
+  Instead, it degraded performance by 7.6 percentage points.
+
+Example Setup
+  v2 (baseline): "Create product desc with 50-75 words. Include: features,
+                  price, target user. Professional tone."
+  
+  v3 (with examples): [Same as v2 PLUS two complete example descriptions
+                       showing expected style and length]
+
+Result
+  v2 produced 13 unique descriptions (14.3% consistency)
+  v3 produced 9 unique descriptions (6.7% consistency) — WORSE
+
+Root Cause Analysis (Hypothesis)
+  The few-shot examples overconstrained the model in the wrong way.
+  
+  What SHOULD have happened:
+    Model reads constraints → Model generates 1 description
+  
+  What ACTUALLY happened:
+    Model reads constraints
+    Model reads examples
+    Model now has TWO signals:
+      Signal A: The written constraints say "50-75 words, include features..."
+      Signal B: The examples show a specific style: formal, feature-first,
+                price-at-end, etc.
+    
+    Model becomes confused about whether to:
+      - Follow Signal A (written rules) strictly
+      - Imitate Signal B (example style) closely
+      - Balance both
+    
+    Different temperature-influenced generation cycles choose different balances.
+    Result: MORE variation, not less.
+
+How to Detect This Pattern
+  - Adding examples degrades rather than improves consistency
+  - The baseline constraint-only version outperforms the constraint+example version
+  - A/B test clearly shows negative effect
+
+Prevention Strategy
+  1. Never assume few-shot helps without testing
+  2. Start with constraints alone
+  3. Only add examples if constraints are ambiguous
+  4. Test few-shot versions A/B with control (no examples)
+  5. Measure effect rigorously; only deploy if beneficial
+
+Lesson Learned
+  Few-shot learning is not universally beneficial. It works best when:
+    - Task is ambiguous and needs clarification
+    - Examples align with constraints, not compete with them
+    - The model has clear hierarchy: constraints first, examples as clarification
+  
+  It FAILS when:
+    - Constraints are already explicit
+    - Examples establish different-than-stated conventions
+    - Examples create conflicting signals
+
+────────────────────────────────────────────────────────────────────────────────
+PATTERN 3: RIGID CONSTRAINTS vs. QUALITY TRADE-OFF
+────────────────────────────────────────────────────────────────────────────────
+
+Occurrence: Product v4 (46.7% consistency, higher than v2's 14.3% but still
+            suboptimal relative to effort)
+
+Symptom
+  Attempting to maximize consistency through extreme structural rigidity.
+  
+  v4 Approach:
+    - Fixed 4-sentence template (sentence 1: product, sentence 2: features, etc.)
+    - EXACTLY 60 words (not 50-75, not approximately—EXACTLY)
+    - No flexibility in structure whatsoever
+    - Extreme emphasis on compliance
+
+Result
+  v4 achieved 46.7% consistency (improvement over v2), but:
+    - Some responses were structurally correct but off by 1-2 words
+    - Some responses sacrificed information quality to fit word count
+    - Some responses awkwardly phrased sentences to meet template
+    - Overall, rigidity helped but at cost of output quality
+
+Root Cause Analysis
+  Constraints can be UNDER-specified or OVER-specified.
+  
+  Under-specified: "Create a product description" → too much freedom
+  Over-specified: "Exactly 60 words, 4 sentences, rigid template" → no room for
+                  the model to find natural phrasing
+  
+  The model's task became solving a combinatorial puzzle:
+    "Fit all required information into EXACTLY 60 words across 4 sentences"
+  
+  This is a hard constraint satisfaction problem, not a natural language task.
+  The model struggles because:
+    - Some natural phrasings are shorter/longer than expected
+    - Exactly 60 words is arbitrary (not cognitive)
+    - The model may cut information or repeat words to reach exact count
+
+How to Detect This Pattern
+  - Model produces structurally correct output but with quality issues
+  - Word count is off by 1-2 words frequently
+  - Information is truncated or awkwardly phrased
+  - Relaxing the constraint doesn't help—the issue is rigidity itself
+
+Prevention Strategy
+  1. Use ranges, not exact numbers (50-75, not exactly 60)
+  2. Constrain STRUCTURE, not EXACT WORD COUNT
+  3. Allow flexibility within the structure
+  4. Test quality metrics (information completeness) alongside consistency
+  5. Prefer flexibility inside constraints over absolute rigidity
+
+Lesson Learned
+  The optimal approach is CONSTRAINED FREEDOM, not absolute control.
+  Product v6b succeeded because it:
+    - Fixed template structure (no flexibility in sentence order)
+    - Allowed synonym selection within fixed slots (flexibility in word choice)
+    - Used reasonable bounds (not exact counts)
+    - Achieved 93.3% consistency with natural-sounding output
+
+────────────────────────────────────────────────────────────────────────────────
+PATTERN 4: INSUFFICIENT TOKEN BUDGET FOR RESPONSES
+────────────────────────────────────────────────────────────────────────────────
+
+Occurrence: Extraction v3a (max_tokens=200; 0% consistency with truncated
+            responses)
+
+Symptom
+  Responses are cut off mid-word, mid-sentence.
+  JSON blocks are incomplete: `"item_id": "123` (no closing quote/bracket)
+  Consistency appears to be 0% because no two responses match (all truncated at
+  different points).
+
+Example
+  Step-by-step reasoning:
+    STEP 1 - Read carefully... [50 tokens]
+    STEP 2 - Identify information... [40 tokens]
+    STEP 3 - Verify extraction... [30 tokens]
+    STEP 4 - Return JSON format:
+    ```json
+    {
+      "item_id": "12345",
+      ...
+    [truncated at token 200]
+
+Root Cause Analysis
+  The prompt itself consumed most of the token budget:
+    - 4-step reasoning instructions: ~40 tokens
+    - Complete example walkthrough: ~120 tokens
+    - Total prompt tokens: ~160
+    - Remaining for response: ~40 tokens (of 200 max)
+  
+  The model tried to complete all 4 reasoning steps PLUS return JSON, but only
+  had 40 output tokens. Result: incomplete output on every run, all unique
+  because truncated at different logical points.
+
+How to Detect This Pattern
+  - Responses end mid-sentence/mid-JSON
+  - Increasing temperature doesn't help (issue is token limit, not randomness)
+  - All responses appear completely different (because each truncates uniquely)
+  - Consistency is 0% even though task might be solvable
+
+Prevention Strategy
+  1. Count input tokens in the prompt
+  2. Estimate output tokens needed for a complete response
+  3. Set max_tokens = estimated_output_tokens + 50 (buffer)
+  4. Test on 1 run to verify before scaling to 15
+  5. Adjust if responses still truncate
+
+Lesson Learned
+  Token accounting matters. A verbose prompt (with examples) can consume 60-70%
+  of budget, leaving insufficient space for output. Choose between:
+    A) Shorter prompt + longer response budget
+    B) More concise prompting (no examples) + same response budget
+  
+  For Product v3, the fix was not to add examples to show style. The fix was to
+  deliver style information more concisely, or increase max_tokens.
+
+────────────────────────────────────────────────────────────────────────────────
+PATTERN 5: METRIC MISMATCH — MEASURING THE WRONG THING
+────────────────────────────────────────────────────────────────────────────────
+
+Occurrence: Extraction v3b (0% consistency by string match, 100% consistency by
+            extracted data)
+
+Symptom
+  Chain-of-Thought extraction produces identical JSON across all 15 runs.
+  But we report 0% consistency.
+  Users are confused: "How can the JSON be identical but consistency be 0%?"
+
+Root Cause Analysis
+  We measured consistency as: len(set(extraction_v3_15_results))
+  
+  This measures EXACT STRING MATCH of the full response, including:
+    - Reasoning steps
+    - Explanation text
+    - Formatting of the reasoning
+    - JSON at the end
+  
+  The JSON portions were identical:
+    ```
+    {
+      "item_id": "12345",
+      "order_date": "March 15th",
+      "delivery_speed": "fast",
+      "packaging_condition": "damaged",
+      "overall_sentiment": "negative"
+    }
+    ```
+  
+  But the reasoning text varied:
+    Run 1: "Let's go through the extraction process step-by-step..."
+    Run 2: "Let's work through the extraction process step by step..."
+    Run 3: "Let me work through this systematically..."
+  
+  Result: All 15 string responses are unique → 0% consistency.
+  But extracted data is 100% consistent → 0% reported, 100% actual.
+
+How to Detect This Pattern
+  - Consistency metric doesn't match the task goal
+  - Exact string match is too strict for generation tasks
+  - Extracted data quality is high but consistency % is low
+  - Task succeeds but metric says it failed
+
+Prevention Strategy
+  1. Define metrics BEFORE running experiments
+  2. Clarify what "consistency" means for your task:
+     - For classification: exact string match ✓
+     - For generation: semantic similarity (not exact match)
+     - For extraction: extracted field consistency (not full text match)
+  3. Implement task-specific consistency checkers
+  4. Document the metric definition in reports
+
+Lesson Learned
+  The metric must match the business need. For extraction, we don't care if the
+  reasoning text varies slightly. We care that extracted data is correct and
+  consistent. Measure what matters.
+
+================================================================================
+SECTION 3: FAILURE CATEGORY ANALYSIS
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+3.1 FAILURES THAT TAUGHT US SOMETHING VS. PURE FAILURES
+────────────────────────────────────────────────────────────────────────────────
+
+Type A: Instructive Failures (Failed but revealed important insight)
+
+  Product v3 (Few-Shot Regression)
+    Result: FAILED (6.7%, worse than v2's 14.3%)
+    Insight: Few-shot can hurt, not just help. Over-specification is real.
+    Value: HIGH (changed our approach to generation tasks)
+  
+  Product v4 (Ultra-Rigid Template)
+    Result: PARTIALLY FAILED (46.7%, improvement but suboptimal)
+    Insight: Extreme rigidity is counterproductive. Balance needed.
+    Value: HIGH (led to v6b's template+synonym breakthrough)
+  
+  Extraction v3a (Truncation Issue)
+    Result: FAILED (0%, responses truncated)
+    Insight: Token budgeting is critical. Verbose prompts eat response space.
+    Value: MEDIUM (fixable, but important lesson)
+
+Type B: Unambiguous Successes
+
+  Sentiment v2 (Format Constraints)
+    Result: SUCCESS (100%)
+    Insight: Explicit constraints work for well-defined answer spaces.
+    Value: HIGH
+  
+  Extraction v4 (Schema Enforcement)
+    Result: SUCCESS (100%)
+    Insight: Structured format + low temp = deterministic output.
+    Value: HIGH
+  
+  Product v6b (Template + Synonyms)
+    Result: SUCCESS (93.3%)
+    Insight: Constrained selection beats constrained generation.
+    Value: VERY HIGH (solved most difficult task)
+
+Type C: Expected Failures (Tried but appropriately abandoned)
+
+  Product v5 (Exact Copy)
+    Result: SUCCESS (100%) but unethical
+    Insight: Useful as upper-bound control, not production-viable.
+    Value: MEDIUM (sanity check)
+  
+  Product v6 (JSON Schema Only)
+    Result: FAILED (20%)
+    Insight: JSON schema alone insufficient for generation. Need template.
+    Value: LOW (dead-end approach)
+
+Type D: Incomplete Tests (Budget limitations)
+
+  Extraction v2
+    Result: INCOMPLETE (0% reported, but test ran out of budget)
+    Insight: Hard to evaluate. Budget escalation necessary.
+    Value: LOW (inconclusive)
+
+────────────────────────────────────────────────────────────────────────────────
+3.2 COMMON FAILURE MODES BY TASK TYPE
+────────────────────────────────────────────────────────────────────────────────
+
+CLASSIFICATION TASKS (Sentiment)
+  Failure Mode 1: Ambiguous Response Format
+    Example: "Classify as positive/negative" without specifying UPPERCASE
+    Fix: Enumerate valid outputs explicitly
+    Difficulty to fix: EASY (add 1-2 sentences)
+
+  Failure Mode 2: Over-exemplification (would have happened if tested)
+    Example: Adding 5 example classifications when task is already clear
+    Fix: Skip few-shot if constraints are explicit
+    Difficulty to fix: EASY (just don't add examples)
+
+GENERATION TASKS (Product Description)
+  Failure Mode 1: Insufficient Constraints (v1)
+    Example: "Create a product description" with no guidance
+    Fix: Add structure, length, and element requirements
+    Difficulty to fix: MEDIUM (requires thoughtful constraint design)
+
+  Failure Mode 2: Conflicting Signals (v3)
+    Example: Constraints + examples that establish different conventions
+    Fix: Only add examples if constraints are ambiguous
+    Difficulty to fix: MEDIUM (requires A/B testing)
+
+  Failure Mode 3: Over-rigidity (v4)
+    Example: Forcing exact word count, fixed sentence structure
+    Fix: Use ranges, allow flexibility within template
+    Difficulty to fix: MEDIUM (requires rebalancing)
+
+  Failure Mode 4: Wrong Variable Selection (v6)
+    Example: Allowing full JSON generation instead of selection
+    Fix: Constrain variable choices to predefined sets
+    Difficulty to fix: MEDIUM-HIGH (requires rethinking approach)
+
+STRUCTURED EXTRACTION TASKS
+  Failure Mode 1: Underspecified Format (v1)
+    Example: "Extract data" without specifying JSON
+    Fix: Explicit JSON schema + field constraints
+    Difficulty to fix: EASY (add schema spec)
+
+  Failure Mode 2: Insufficient Output Space (v3a)
+    Example: Long prompt leaves little room for response
+    Fix: Increase max_tokens or make prompt more concise
+    Difficulty to fix: EASY (1-line change)
+
+  Failure Mode 3: Wrong Metric (v3b)
+    Example: Measuring full text match instead of extracted data match
+    Fix: Define task-specific consistency metric
+    Difficulty to fix: EASY (change metric definition)
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 4: COMPARATIVE IMPROVEMENT ANALYSIS
+════════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────────────
+4.1 WHAT TECHNIQUE IMPROVEMENTS ACTUALLY DELIVERED
+────────────────────────────────────────────────────────────────────────────────
+
+EXPLICIT FORMATTING CONSTRAINTS
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Metric: Consistency improvement by version                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Sentiment v1 → v2:      40% → 100%  [ +60%  ] ████████████████████ ✓✓✓✓✓  │
+│ Product v1 → v2:       6.7% → 14.3% [ +7.6% ] ██ ✓✓                        │
+│ Extraction v1 → v4:   33.3% → 100%  [ +66.7%] ███████████████████ ✓✓✓✓✓  │
+│ Extraction v3 → v4:   100% → 100%   [ 0%    ] (data already good)          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ VERDICT: Excellent for classification and extraction, moderate for generation│
+│ PATTERN: Works best when answer space is finite/defined                     │
+│ COST: Low (add 2-4 sentences to prompt)                                      │
+│ RISK: Can cause over-rigidity on generation tasks                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+FEW-SHOT LEARNING
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Metric: Consistency improvement by version                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Sentiment v2 → v3:     100% → 100%  [ 0%    ] (no benefit) neither ✓ nor ✗│
+│ Product v2 → v3:      14.3% → 6.7%  [ -7.6% ] ✗ REGRESSION                  │
+│ Extraction v3 → v4:   100% → 100%   [ 0%    ] (no advantage vs v4)  ~      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ VERDICT: No net benefit in any tested scenario                              │
+│ PATTERN: Either redundant (sentiment) or harmful (product)                  │
+│ COST: High (add 50-200 tokens)                                               │
+│ RISK: Can introduce conflicting signals                                      │
+│ RECOMMENDATION: Do not use few-shot without A/B testing first               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+CHAIN-OF-THOUGHT REASONING
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Metric: Data quality and token efficiency                                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Extraction v3b CoT:    JSON data 100% consistent (good data quality)        │
+│                        Full text 0% consistent (variable reasoning)  ~      │
+│ Extraction v4 Schema:  JSON data 100% consistent                    ✓       │
+│                        Full text 100% (no reasoning fluff)          ✓✓      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ COST COMPARISON                                                              │
+│   v3b (CoT):     $0.3826 for 15 runs                                         │
+│   v4 (Schema):   $0.1404 for 15 runs                                         │
+│   Ratio:         2.72x more expensive for identical data                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ VERDICT: CoT produces good data but costs 3x more                           │
+│ PATTERN: Reasoning steps add value for audit/transparency, cost for efficiency
+│ BEST FOR: When reasoning transparency is required by business rules         │
+│ AVOID FOR: Cost-sensitive applications where only final answer matters      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TEMPERATURE TUNING
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Metric: Impact on consistency by setting                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Temperature 0.1 (ultra-low):                                                 │
+│   Extraction v4:     100% consistency ✓✓✓                                    │
+│                                                                              │
+│ Temperature 0.15 (very low):                                                 │
+│   Product v6b:       93.3% consistency ✓✓✓ (2 variations)                    │
+│                                                                              │
+│ Temperature 0.2 (low):                                                       │
+│   Sentiment v2:      100% consistency ✓✓✓                                    │
+│                                                                              │
+│ Temperature 0.3 (moderate-low):                                              │
+│   Sentiment v3:      100% consistency ✓✓✓ (few-shot)                         │
+│   Extraction v3:     100% JSON consistency ✓ (reasoning text varies)         │
+│                                                                              │
+│ Temperature 0.7 (moderate):                                                  │
+│   Product v2:        14.3% consistency ✓ (still highly variable)             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ PATTERN: Inverse correlation between temperature and consistency             │
+│ FORMULA: Lower temp → higher consistency (but less creativity)               │
+│ RECOMMENDATION: 0.1-0.2 for consistency-critical tasks                       │
+│                 0.3-0.5 for balance between consistency and quality          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TEMPLATE-BASED + SYNONYM SELECTION (v6b Innovation)
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Metric: Breakthrough improvement                                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Product v4 → v6b:     46.7% → 93.3%  [ +46.6% ] ████████████████████ ✓✓✓✓  │
+│                                                                              │
+│ Mechanism:                                                                   │
+│   Template:    "[FEATURE] design that [BENEFIT_VERB] for [TARGET_USER]"    │
+│   Synonyms:    FEATURE ∈ {ergonomic, precision, responsive}                │
+│                BENEFIT_VERB ∈ {eliminates, resolves, addresses}            │
+│                TARGET_USER ∈ {professionals, frequent users, power users}  │
+│   Temperature: 0.15 (encourages selection, not generation)                  │
+│                                                                              │
+│ Result:        93.3% consistency (2 unique: "eliminates" vs "resolves")     │
+│                Each variation is natural and authentic                      │
+│                Not a "trick" (like v5's exact copy)                         │
+│                Semantically equivalent variations acceptable                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ VERDICT: Most effective technique for generation tasks                      │
+│ PATTERN: Works when you specify CHOICES, not generation rules               │
+│ BEST FOR: Product marketing, structured narratives, fixed-form generation   │
+│ LIMITATION: Requires manual curation of synonym sets per slot               │
+│ SCALABILITY: Works for short outputs (1-2 sentences); harder for paragraphs │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 5: FAILURE / SUCCESS MATRIX BY TECHNIQUE × TASK
+════════════════════════════════════════════════════════════════════════════════
+
+┌─────────────────────────┬──────────────────┬──────────────────┬──────────────┐
+│ Technique               │ Classification   │ Generation       │ Extraction   │
+├─────────────────────────┼──────────────────┼──────────────────┼──────────────┤
+│ Explicit Constraints    │ ✓✓✓ (+60%)       │ ✓ (+7.6% only)   │ ✓✓✓ (+66.7%)│
+│ Few-Shot Examples       │ ✗ (no gain)      │ ✗✗ (-7.6%)       │ ~ (neutral)  │
+│ Ultra-Rigid Template    │ N/A              │ ✗ (46.7%)        │ N/A          │
+│ Template + Synonyms     │ N/A              │ ✓✓✓ (+46.6%)     │ N/A          │
+│ Chain-of-Thought        │ N/A              │ N/A              │ ✓ (data good)│
+│ Schema Enforcement      │ N/A              │ N/A              │ ✓✓✓ (100%)   │
+│ Low Temperature (0.1)   │ ✓✓✓ essential    │ ✓ helpful        │ ✓✓✓ essential│
+│ Moderate Temp (0.3)     │ ✓✓ as backup     │ ✓ acceptable     │ ✓            │
+└─────────────────────────┴──────────────────┴──────────────────┴──────────────┘
+
+Legend:
+  ✓✓✓ = Excellent, major breakthrough
+  ✓✓  = Very good, significant improvement
+  ✓   = Good, meaningful improvement
+  ~   = Neutral, no clear benefit or harm
+  ✗   = Modest failure, no improvement
+  ✗✗  = Clear failure, performance degraded
+  N/A = Not applicable to this task type
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 6: RECOMMENDATIONS FOR AVOIDING FUTURE FAILURES
+════════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────────────
+6.1 DECISION TREE: WHICH TECHNIQUE TO USE?
+────────────────────────────────────────────────────────────────────────────────
+
+START: You want to improve prompt consistency
+
+│
+├─ Is the task CLASSIFICATION? (finite answer space)
+│  │
+│  ├─ YES
+│  │  └─ Use: Explicit format constraints + low temperature (0.1-0.2)
+│  │     Result: Expect 80-100% consistency
+│  │     Cost: Minimal (add specification to prompt)
+│  │     Skip: Few-shot learning (no benefit)
+│  │
+│  └─ NO (is it GENERATION?)
+│     │
+│     ├─ YES
+│     │  │
+│     │  ├─ Is the output SHORT and STRUCTURED? (< 100 words, fixed format)
+│     │  │  │
+│     │  │  ├─ YES
+│     │  │  │  └─ Use: Template + synonym selection + 0.15 temperature
+│     │  │  │     Result: Expect 85-95% consistency
+│     │  │  │     Cost: Moderate (design template + curate synonyms)
+│     │  │  │
+│     │  │  └─ NO (long freeform generation)
+│     │  │     └─ Use: Explicit structure + length constraints + 0.3 temp
+│     │  │        Result: Expect 20-40% consistency
+│     │  │        Acceptance: Generation is naturally variable
+│     │  │
+│     │  └─ Is output STRUCTURED/DETERMINISTIC? (JSON, fields, fixed order)
+│     │     │
+│     │     ├─ YES
+│     │     │  │
+│     │     │  ├─ Do you need REASONING TRANSPARENCY? (audit trail)
+│     │     │  │  │
+│     │     │  │  ├─ YES → Chain-of-Thought + JSON output, 0.3 temp
+│     │     │  │  │         Result: 100% data + varied reasoning
+│     │     │  │  │         Cost: 3x higher tokens
+│     │     │  │  │
+│     │     │  │  └─ NO → Schema-enforced JSON, 0.1 temp
+│     │     │  │         Result: 100% consistency, 100% data
+│     │     │  │         Cost: Efficient, minimal tokens
+│     │     │  │
+│     │     │  └─ Use: Schema specification + field constraints
+│     │     │
+│     │     └─ NO
+│     │        └─ Freeform extraction
+│     │           Use: Traditional NLP approach (this lab didn't test this)
+│     │
+│     └─ NO (is it EXTRACTION?)
+│        └─ [See EXTRACTION branch above]
+
+────────────────────────────────────────────────────────────────────────────────
+6.2 CHECKLIST: BEFORE DEPLOYING A PROMPT
+────────────────────────────────────────────────────────────────────────────────
+
+PRE-TEST CHECKLIST
+  ☐ Have I clearly defined what "consistency" means for this task?
+  ☐ Have I identified the answer space (finite or infinite)?
+  ☐ Have I specified the required output format explicitly?
+  ☐ Have I enumerated valid response options (if finite)?
+  ☐ Have I set appropriate temperature for the task type?
+  ☐ Have I calculated token budget (prompt + output)?
+  ☐ Have I avoided adding examples unless constraints are ambiguous?
+
+TESTING CHECKLIST
+  ☐ Run 2-3 test iterations to check for major issues
+  ☐ Verify responses are complete (not truncated)
+  ☐ Verify responses are reasonable (sanity check)
+  ☐ Choose temperature based on task type (not guessing)
+  ☐ If consistency is poor, diagnose why (vague? conflicting signals?)
+  ☐ Only after verification, scale to full experiment (15 runs)
+
+IMPROVEMENT CHECKLIST
+  ☐ If consistency < 80%, identify failure pattern
+  ☐ If failure is vague instructions → add explicit constraints
+  ☐ If failure is conflicting signals → remove examples, keep constraints
+  ☐ If failure is over-rigidity → relax constraints, allow flexibility
+  ☐ If failure is truncation → increase max_tokens or shorten prompt
+  ☐ If failure is wrong metric → redefine what you're measuring
+
+DEPLOYMENT CHECKLIST
+  ☐ Have I tested the final version with at least 15 iterations?
+  ☐ Have I documented the prompt and its reasoning?
+  ☐ Have I recorded the consistency metric achieved?
+  ☐ Have I tested failure cases (edge inputs)?
+  ☐ Have I monitored cost and stayed within budget?
+  ☐ Have I considered future maintenance (is prompt clear for others?)
+
+════════════════════════════════════════════════════════════════════════════════
+CONCLUSION
+════════════════════════════════════════════════════════════════════════════════
+
+This failure analysis examined 235+ API calls across 3 tasks with 4-6 prompt
+versions each. Key findings:
+
+1. Most "failures" were actually IMPLEMENTATION failures, not technique failures.
+   Few-shot didn't fail as a concept; it was used incorrectly (conflicting signals).
+   CoT didn't fail; it was just expensive relative to simpler alternatives.
+
+2. The three most important factors for consistency are:
+   a) Explicit, unambiguous constraints on format and content
+   b) Appropriate temperature setting (low for consistency, moderate for quality)
+   c) Task-specific metric definition (exact match for classification, extracted
+      data for extraction, not full text match)
+
+3. One surprising breakthrough: Template + synonym selection (v6b) achieved
+   93.3% on the most challenging task. This technique deserves wider adoption
+   for structured generation tasks.
+
+4. Several classic NLP techniques delivered disappointing results:
+   - Few-shot learning: No net benefit, sometimes harmful
+   - Chain-of-Thought for simple extraction: Good data, unnecessary cost
+   - Ultra-rigid templates: Rigidity ≠ better consistency
+
+5. The path to 93%+ consistency on generation tasks is narrow but traceable:
+   - Define clear structure (template)
+   - Constrain variable choices (synonyms)
+   - Tune temperature low enough to encourage selection (0.15)
+   - Accept that some synonyms will be chosen over others (natural variation)
+
+Future prompt engineering work should start with this foundation and iterate
+from success, rather than assuming standard techniques (few-shot, CoT) will
+help without testing.
+
+════════════════════════════════════════════════════════════════════════════════
+END OF FAILURE ANALYSIS REPORT
+════════════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,85 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T17:13:29.216280
+Model: gpt-4o-mini
+Number of runs: 15
+Temperature: 0.15
+
+Prompt:
+------------------------------------------------------------
+Write a product description using this SEMI-FIXED TEMPLATE.
+You have flexibility ONLY in synonym selection within the template.
+
+PRODUCT: Wireless Mouse ($29.99)
+
+TEMPLATE STRUCTURE:
+"The Wireless Mouse features [FEATURE] design that [BENEFIT_VERB] 
+for [TARGET_USER]. It [SOLVES] the problem of [PROBLEM], delivering 
+[BENEFIT_NOUN] at just $29.99."
+
+SYNONYM OPTIONS (choose ONE per bracket):
+[FEATURE]: ergonomic | precision | responsive
+[BENEFIT_VERB]: enhances comfort | improves control | boosts productivity
+[TARGET_USER]: office professionals | video gamers | remote workers
+[SOLVES]: eliminates | resolves | addresses
+[PROBLEM]: wrist strain | cursor lag | tracking inaccuracy
+[BENEFIT_NOUN]: superior comfort | exceptional control | enhanced productivity
+
+REQUIREMENTS:
+- Use EXACTLY this template structure
+- Fill each bracket with ONE synonym from provided options
+- No additional words outside template
+- Return ONLY the completed description (just the text, no JSON)
+
+Generate the description:
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It resolves the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 2 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 3 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 4 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It resolves the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 5 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 6 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It resolves the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 7 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 8 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 9 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 10 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 11 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 12 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 13 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It resolves the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 14 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+--- Response 15 (Cost: $0.008820) ---
+The Wireless Mouse features ergonomic design that enhances comfort for office professionals. It eliminates the problem of wrist strain, delivering superior comfort at just $29.99.
+
+============================================================
+Total cost for 15 responses: $0.132300

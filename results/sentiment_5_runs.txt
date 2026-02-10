@@ -1,0 +1,31 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:28:35.260717
+Model: gpt-4o-mini
+Number of runs: 5
+Temperature: 0.7
+
+Prompt:
+------------------------------------------------------------
+Classify this customer message: "I love this product! It's exactly what I needed.
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.001770) ---
+This customer message can be classified as **positive feedback** or **customer satisfaction**.
+
+--- Response 2 (Cost: $0.001770) ---
+The customer message can be classified as **Positive Feedback** or **Customer Satisfaction**.
+
+--- Response 3 (Cost: $0.001710) ---
+This customer message can be classified as "Positive Feedback" or "Customer Satisfaction."
+
+--- Response 4 (Cost: $0.001770) ---
+The customer message can be classified as **Positive Feedback** or **Customer Satisfaction**.
+
+--- Response 5 (Cost: $0.001770) ---
+This customer message can be classified as **positive feedback** or **customer satisfaction**.
+
+============================================================
+Total cost for 5 responses: $0.008790

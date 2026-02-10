@@ -1,0 +1,177 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T16:38:59.811985
+Model: gpt-4o-mini
+Number of runs: 15
+Temperature: 0.1
+
+Prompt:
+------------------------------------------------------------
+Extract data into ONLY this exact JSON format. Return ONLY valid JSON, nothing else.
+
+EXACT JSON SCHEMA (do not modify):
+{
+  "item_id": "string_only",
+  "order_date": "string_only",
+  "delivery_speed": "string_only",
+  "packaging_condition": "string_only",
+  "overall_sentiment": "string_only"
+}
+
+FIELD RULES (must follow exactly):
+- item_id: Extract number after # symbol
+- order_date: Extract date mentioned
+- delivery_speed: One word only (fast/slow/medium)
+- packaging_condition: One word (perfect/damaged/good/poor)
+- overall_sentiment: One word (positive/negative/neutral)
+
+VALIDATION:
+- All fields MUST be strings
+- No additional fields
+- No extra text before or after JSON
+- Return ONLY the JSON object
+
+Customer feedback: "I ordered item #12345 on March 15th. The delivery was fast but the packaging was damaged."
+
+Return ONLY valid JSON:
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 2 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 3 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 4 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 5 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 6 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 7 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 8 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 9 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 10 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 11 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 12 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 13 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 14 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+--- Response 15 (Cost: $0.009360) ---
+{
+  "item_id": "12345",
+  "order_date": "March 15th",
+  "delivery_speed": "fast",
+  "packaging_condition": "damaged",
+  "overall_sentiment": "negative"
+}
+
+============================================================
+Total cost for 15 responses: $0.140400

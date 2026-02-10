@@ -1,0 +1,30 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:43:47.199097
+Model: gpt-4o-mini
+Number of runs: 15
+Temperature: 0.2
+
+Prompt:
+------------------------------------------------------------
+Extract information from the customer feedback and return ONLY a JSON object.
+
+Required fields in JSON:
+- item_id: The product/item number
+- order_date: Date of the order
+- delivery_speed: Was delivery fast/slow/standard?
+- packaging_condition: Was packaging good/damaged/perfect?
+- overall_sentiment: positive/negative/neutral
+
+Customer feedback: "I ordered item #12345 on March 15th. The delivery was fast but the packaging was damaged."
+
+Return ONLY valid JSON, no other text:
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (ERROR) ---
+Failed: Budget would be exceeded. Estimated cost: $0.015180
+
+============================================================
+Total cost for 0 responses: $0.000000

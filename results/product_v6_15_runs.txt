@@ -1,0 +1,181 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T17:11:32.015555
+Model: gpt-4o-mini
+Number of runs: 15
+Temperature: 0.2
+
+Prompt:
+------------------------------------------------------------
+Create a product description by selecting from provided options 
+and combining them creatively. Output ONLY valid JSON.
+
+PRODUCT: Wireless Mouse ($29.99)
+
+INSTRUCTIONS:
+1. Choose ONE from each category below
+2. Write a 2-3 sentence description using your selections
+3. MUST include: product name, price, all 4 chosen elements
+4. Each sentence should be 12-16 words maximum
+5. Professional but friendly tone
+
+CATEGORY OPTIONS:
+Main Feature: ergonomic | precision | responsive
+Target User: professionals | gamers | office workers
+Key Benefit: productivity | comfort | control
+Problem Solved: wrist strain | cursor lag | inaccuracy
+
+OUTPUT RULES:
+- Return ONLY valid JSON (no markdown, no text before/after)
+- Include the 4 choices you made in the JSON
+- Description must use all 4 chosen words/phrases
+
+OUTPUT FORMAT:
+{
+  "main_feature": "your_choice",
+  "target_user": "your_choice",
+  "key_benefit": "your_choice",
+  "problem_solved": "your_choice",
+  "description": "Your 2-3 sentence description here using all 4 elements"
+}
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.012390) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enhance your productivity effortlessly. Enjoy a seamless experience that keeps you comfortable all day long."
+}
+
+--- Response 2 (Cost: $0.012570) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enjoy seamless productivity throughout your workday. This mouse ensures a comfortable grip while enhancing your overall efficiency."
+}
+
+--- Response 3 (Cost: $0.012570) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enhance your productivity with every click. Enjoy a seamless work experience that keeps you comfortable all day long."
+}
+
+--- Response 4 (Cost: $0.012510) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enjoy seamless productivity throughout your day. This mouse combines comfort and functionality for an enhanced work experience."
+}
+
+--- Response 5 (Cost: $0.012570) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enjoy seamless productivity throughout your day. This mouse ensures a comfortable grip while enhancing your overall work experience."
+}
+
+--- Response 6 (Cost: $0.012450) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enhance your productivity effortlessly. This mouse ensures a smooth, enjoyable experience throughout your workday."
+}
+
+--- Response 7 (Cost: $0.012030) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "The Wireless Mouse offers an ergonomic design perfect for office workers seeking comfort. Say goodbye to wrist strain while enhancing your productivity with this stylish and functional accessory."
+}
+
+--- Response 8 (Cost: $0.012510) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enjoy enhanced productivity throughout your day. This mouse combines comfort and functionality for a seamless work experience."
+}
+
+--- Response 9 (Cost: $0.012570) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enjoy seamless productivity throughout your day. This mouse ensures you stay comfortable while maintaining control over your tasks."
+}
+
+--- Response 10 (Cost: $0.012570) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enjoy seamless productivity throughout your day. This mouse ensures a comfortable grip while enhancing your overall work experience."
+}
+
+--- Response 11 (Cost: $0.012210) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enhance your productivity effortlessly. Enjoy a seamless work experience with every click."
+}
+
+--- Response 12 (Cost: $0.012750) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enjoy enhanced productivity throughout your workday. This mouse ensures a smooth and comfortable experience, making every click a pleasure."
+}
+
+--- Response 13 (Cost: $0.012750) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enjoy enhanced productivity throughout your workday. This mouse ensures a smooth and comfortable experience, making every click a pleasure."
+}
+
+--- Response 14 (Cost: $0.012450) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enhance your productivity effortlessly. Enjoy a seamless experience that keeps you comfortable throughout your workday."
+}
+
+--- Response 15 (Cost: $0.012390) ---
+{
+  "main_feature": "ergonomic",
+  "target_user": "office workers",
+  "key_benefit": "comfort",
+  "problem_solved": "wrist strain",
+  "description": "Experience ultimate comfort with our ergonomic wireless mouse designed for office workers. Say goodbye to wrist strain and enhance your productivity with every click. This mouse ensures a smooth and enjoyable working experience."
+}
+
+============================================================
+Total cost for 15 responses: $0.187290

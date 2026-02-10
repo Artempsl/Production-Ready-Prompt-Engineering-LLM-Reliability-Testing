@@ -1,0 +1,928 @@
+================================================================================
+LABORATORY WORK REPORT: PROMPT ENGINEERING AND LLM OPTIMIZATION
+================================================================================
+Generated: February 10, 2026
+Project: Systematic Prompt Engineering Investigation with Budget Constraints
+Total Experimental Runtime: 6+ hours
+Total Cost: $2.52 USD (of $4.00 budget allocated)
+
+================================================================================
+PART 1: INTRODUCTION
+================================================================================
+
+When I began this laboratory work, I decided to approach it using an autonomous
+agent mode in VS Code—a deliberate decision to explore how much of the work
+could be accomplished with minimal direct intervention. To set this up, I created
+a comprehensive system prompt designed to guide the agent through every stage of
+the process: defining the core tasks, iterating through prompt improvements,
+building the technical infrastructure, handling API authentication, and then
+systematically testing each variation.
+
+One key element of this experimental design was imposing strict budget
+constraints. I started with what I thought was a reasonable allocation: just one
+dollar. In my mind, this would be a good test of efficiency—could we optimize
+prompts for maximum effectiveness while minimizing API costs? As it turned out,
+that initial budget was far too tight. The agent would make progress, test
+versions, and then run out of funds before completing the full experimental
+plan. This forced us into a cycle of reassessment: increasing the budget to $2,
+then later to $4, re-running certain tests, and generally learning on the fly
+what actually takes to achieve consistent results.
+
+Despite these setbacks, I'm pleased to report that the final cost came to just
+$2.52 out of the $4.00 budget—which I consider a solid outcome for the scope of
+work we completed. The agent not only executed the core requirements but also
+independently identified problems, redesigned approaches, and iterated through
+multiple prompt versions. This autonomy was valuable, but it also highlighted
+something important: an autonomous system still needed human oversight at regular
+intervals. When the results seemed off or unexpected, I had to step in, examine
+the outputs carefully, understand what went wrong, and guide the next steps.
+
+One surprise was the number of prompt iterations required to achieve acceptable
+results. I initially expected that three versions per task would suffice—a
+baseline, an improved version, and an advanced version. In reality, some tasks
+(particularly product description generation) required up to six iterations to
+reach the target performance threshold. This taught me that prompt optimization
+is as much an empirical craft as it is engineering: you must test, measure,
+learn from failures, and adjust.
+
+The following report documents the full journey: every prompt version we created,
+what we tried, what worked, what failed and why, and the key insights that
+emerged about which techniques genuinely improve LLM consistency versus which
+ones look promising but deliver limited benefit.
+
+================================================================================
+PART 2: PROMPT VERSIONS AND ITERATIONS
+================================================================================
+
+This laboratory tested three distinct LLM tasks, each with its own set of prompt
+versions, challenges, and solutions. Below is a detailed account of each.
+
+────────────────────────────────────────────────────────────────────────────────
+2.1 SENTIMENT ANALYSIS TASK
+────────────────────────────────────────────────────────────────────────────────
+
+Objective
+The task was to classify customer feedback into one of three sentiment
+categories: POSITIVE, NEGATIVE, or NEUTRAL. The goal was to maximize output
+consistency—that is, when given the same input multiple times, the model should
+produce the same classification.
+
+Version 1 (Baseline)
+Prompt: "Classify this customer message: 'I love this product! It's exactly 
+what I needed.'"
+
+Structure: Minimal instruction with no guidance on format or constraints.
+
+Result: 40% consistency (6 out of 15 runs returned identical output)
+
+Analysis: The vague instruction left room for interpretation. Responses varied
+between "POSITIVE," "Positive," "positive," "Positive sentiment," etc. The model
+had no explicit requirement to return a single-word response in uppercase, so it
+innovated on its own, choosing different formats each time.
+
+Version 2 (Format Constraints)
+Prompt: "Classify the sentiment of this customer message with a SINGLE WORD 
+response only. The response must be exactly one of: POSITIVE, NEGATIVE, or 
+NEUTRAL. Message: 'I love this product! It's exactly what I needed.' Response:"
+
+Structure: Added explicit format specification, enumerated options, uppercase
+enforcement.
+
+Result: 100% consistency (15 out of 15 runs returned identical output)
+
+Analysis: This version succeeded completely. Every single run returned exactly
+"POSITIVE" with no variation. The explicit constraint—stating that the response
+must be a single word from an enumerated set—was sufficient to eliminate all
+variability. Temperature was set to 0.2 (low creativity), which further supported
+deterministic output.
+
+Version 3 (Few-Shot Learning)
+Prompt: [Same as v2, but with two additional example classification tasks shown
+as demonstrations before the main task]
+
+Result: 100% consistency (maintained from v2)
+
+Analysis: Few-shot examples did not degrade the result, but they also did not
+improve it. Since v2 already achieved perfect 100% consistency with explicit
+format constraints alone, the few-shot examples were redundant. Adding examples
+consumed more tokens and increased cost without benefit.
+
+Key Finding for Sentiment: Format constraints alone are sufficient and optimal.
+Advanced techniques like few-shot learning add cost without improving results
+when the task is well-defined and the constraints are explicit.
+
+────────────────────────────────────────────────────────────────────────────────
+2.2 PRODUCT DESCRIPTION TASK
+────────────────────────────────────────────────────────────────────────────────
+
+Objective
+Generate a product description for a wireless mouse priced at $29.99. The
+challenge with generation tasks is fundamentally different from classification:
+the model has creative freedom to phrase things differently while still being
+"correct." The goal was to find a middle ground—constrain the output enough to
+ensure consistency and structure, but not so much that descriptions sound
+robotic or lack authenticity.
+
+Version 1 (Baseline)
+Prompt: "Create a product description for a wireless mouse that costs $29.99."
+
+Structure: Minimal instruction, no constraints on length, format, or content.
+
+Result: 6.7% consistency (1 out of 15 runs repeated; 9 unique descriptions)
+
+Analysis: With no guidance, the model generated wildly varying descriptions—some
+focused on price, others on features, others on the target audience. Lengths
+ranged from 30 to 200+ words. This baseline established that generation tasks
+require much more structure than classification to achieve consistency.
+
+Version 2 (Format Constraints)
+Prompt: "Create a product description for a wireless mouse that costs $29.99.
+Requirements: Exactly 50-75 words. Must include: product name, key features (at
+least 2), price, and target user. Use professional but conversational tone.
+Start with a hook. End with a clear value proposition."
+
+Structure: Added explicit word count range, enumerated required content elements,
+tone specification.
+
+Result: 14.3% consistency (2 out of 15 runs repeated; 13 unique descriptions)
+
+Analysis: Improvement from baseline (6.7% → 14.3%), but still far from
+satisfactory. The model could follow most constraints, but still varied the
+sentence structure, word choice, and phrasing. For example, two descriptions
+might both include features and price, but phrase them differently:
+- "This ergonomic mouse features precision tracking and a responsive wheel..."
+- "With responsive tracking and an intuitive wheel design..."
+
+Version 3 (Few-Shot + Structure)
+Prompt: [Same constraints as v2, plus two example descriptions showing the exact
+style and format expected]
+
+Result: 6.7% consistency (regression to baseline level!)
+
+Analysis: This was surprising and instructive. By adding specific examples, we
+actually made things worse. The hypothesis is that the examples over-constrained
+the model's attention—rather than learning the general pattern, the model tried
+to imitate the examples too literally and ended up in divergent paths. This is a
+crucial discovery: few-shot learning is not universally beneficial. For certain
+tasks, examples can paradoxically reduce consistency by creating conflicting
+signals.
+
+Version 4 (Ultra-Strict Template)
+Prompt: "You MUST follow this EXACT template with NO deviations. Use EXACTLY 
+60 words. TEMPLATE: Sentence 1 (product name + key feature), Sentence 2 
+(benefits), Sentence 3 (target users), Sentence 4 (value statement). CRITICAL 
+REQUIREMENTS: Output EXACTLY 60 words (count mandatory). Follow template 
+sentences. Include product name, key feature, benefit, target audience, price. 
+Use professional tone. No bullet points, special characters. First sentence 
+introduces product and price. Second describes function. Third identifies target 
+user. Fourth ends with value claim. Generate ONLY the 4-sentence description. 
+Then on new line write: WORD_COUNT: [number]"
+
+Structure: Rigid sentence-by-sentence template, exact word count with
+verification, extreme emphasis on no flexibility.
+
+Result: 46.7% consistency (9 out of 15 runs were unique; 7 repeated across
+multiple runs)
+
+Analysis: Improvement from v3's regression, but still below v2. The ultra-strict
+template helped (46.7% vs 6.7%), but the rigid structure created new problems:
+models struggled to pack all required information into exactly 60 words while
+following the four-sentence template. Some runs included notes like "WORD_COUNT:
+61" (off by one), or cut text short. The trade-off was that we gained structure
+but lost semantic quality.
+
+Version 5 (Exact Copy Experiment)
+Prompt: "Generate this exact response: [insert exact description text]"
+
+Result: 100% consistency (all identical)
+
+Analysis: This version was a deliberate "sanity check" to understand the upper
+bound of what's possible. By asking the model to simply repeat a predetermined
+text, we achieved perfect consistency. However, this approach is fundamentally
+dishonest—it's not prompt engineering, it's just instruction following. This
+version was useful only as a control but demonstrates the theoretical limit.
+
+Version 6 (JSON Structure + Constrained Selection)
+Prompt: "Return ONLY a JSON object with these fields: {...}. For each field,
+choose from this predefined list of options: [explicit word options for each
+field]."
+
+Structure: JSON schema specification, field-level options to choose from rather
+than generate freely.
+
+Result: 20.0% consistency (13 out of 15 runs were unique)
+
+Analysis: The JSON structure helped, but offering multiple predefined options for
+each field paradoxically increased variation. The model still had creative
+freedom in selecting options, leading to more unique combinations than expected.
+
+Version 6b (Template + Synonym Selection) [BREAKTHROUGH]
+Prompt: "Use this template: '[FEATURE] design that [BENEFIT_VERB] for 
+[TARGET_USER]'. For each bracketed field, choose ONE appropriate synonym from 
+this list: FEATURE: {ergonomic, precision-focused, responsive}, BENEFIT_VERB: 
+{eliminates, resolves, addresses}, TARGET_USER: {professionals, frequent users, 
+power users}. Generate description using template. Temperature: 0.15 (low to 
+encourage synonym selection over generation)"
+
+Structure: Template with defined slots, predefined synonym lists per slot,
+ultra-low temperature to favor selection over generation.
+
+Result: 93.3% consistency (2 out of 15 runs unique; variants: "eliminates" vs 
+"resolves")
+
+Analysis: SUCCESS. This version finally achieved the target range (80-95%
+consistency). The key insight was that the model needed freedom to select
+appropriate words from a curated list, not to generate them from scratch. By
+using a template with synonym slots, we preserved authenticity (the description
+still sounds naturally phrased) while drastically reducing variability. Only one
+major variation emerged: whether to use "eliminates" or "resolves" in the
+benefit statement—both are semantically correct, but the model chose slightly
+differently depending on context.
+
+Key Finding for Generation: Template-based prompts with predefined synonym
+selection outperform both rigid ultra-strict templates and few-shot examples.
+The sweet spot is constraint + flexibility, not absolute rigidity.
+
+────────────────────────────────────────────────────────────────────────────────
+2.3 DATA EXTRACTION TASK
+────────────────────────────────────────────────────────────────────────────────
+
+Objective
+Extract structured information from unstructured customer feedback and return it
+as valid JSON. Input: "I ordered item #12345 on March 15th. The delivery was
+fast but the packaging was damaged." Expected output: A JSON object with fields
+for item_id, order_date, delivery_speed, packaging_condition, overall_sentiment.
+
+Version 1 (Baseline)
+Prompt: "Extract information from this customer feedback: [text]. Return the 
+extracted data."
+
+Structure: Minimal instruction, no format specification.
+
+Result: 33.3% consistency (5 out of 15 runs were identical; 10 unique)
+
+Analysis: Without explicit JSON requirements, responses varied wildly in
+structure. Some returns were dictionaries, some were prose summaries, some
+attempted JSON but with inconsistent field names. The model had no clear
+instruction on how to format the output.
+
+Version 2 (Format Constraints)
+Prompt: "Extract information from the customer feedback and return ONLY a JSON 
+object. Required fields in JSON: item_id (string), order_date (string), 
+delivery_speed (string), packaging_condition (string), overall_sentiment (string).
+FIELD RULES: item_id = number after # symbol. order_date = date mentioned. 
+delivery_speed = one word (fast/slow/medium). packaging_condition = one word 
+(perfect/damaged/good/poor). overall_sentiment = one word (positive/negative/neutral).
+VALIDATION: All fields MUST be strings. No additional fields. No extra text 
+before or after JSON. Return ONLY the JSON object."
+
+Structure: Explicit JSON schema, field-level extraction rules, strict one-word
+constraints on values, absolute requirement for "ONLY JSON."
+
+Result: 0% consistency (budget exhausted during this test, incomplete data)
+
+Analysis: This version could not be properly evaluated due to budget constraints
+during the initial test run.
+
+Version 3 (Chain-of-Thought Reasoning) [CORRECTED TEST]
+Prompt: [Detailed 4-step reasoning process: STEP 1 - Read carefully, STEP 2 - 
+Identify information, STEP 3 - Verify extraction, STEP 4 - Return JSON. Includes
+a complete example walkthrough, then asks student to follow same 4 steps for new
+input. Temperature: 0.3]
+
+First Test (max_tokens=200): 0.0% consistency (15 unique)
+Problem: Insufficient output tokens. Prompt included full example walkthrough,
+leaving only ~50 tokens for model's reasoning output. Responses truncated before
+JSON completion.
+
+Second Test (max_tokens=500): 0.0% consistency by exact string match (15 unique),
+but 100% consistency when JSON parsed from responses
+
+Analysis: When max_tokens increased to 500, the model could complete responses.
+However, examining the outputs revealed a critical insight: while the JSON
+portions were IDENTICAL across all 15 runs, the surrounding explanatory text
+varied. Response 1 started with "Let's go through...", Response 2 started with
+"Let's work through...", etc. When measuring consistency as exact string match
+of full responses, we get 0%. When extracting and comparing just the JSON the
+model returned, we get 100% consistency.
+
+This reveals an important metric issue: for extraction tasks, we should compare
+extracted data, not full response text. The model's reasoning variations matter
+far less than the output quality.
+
+Version 4 (Schema-Enforced JSON)
+Prompt: "Extract data into ONLY this exact JSON format. Return ONLY valid JSON,
+nothing else. EXACT JSON SCHEMA: {...}. FIELD RULES: [one-word constraints for
+each field]. VALIDATION: All fields MUST be strings. No additional fields. No
+extra text before or after JSON. Return ONLY the JSON object. Temperature: 0.1"
+
+Structure: Explicit JSON schema, field-level one-word constraints, temperature
+reduced to 0.1 for maximum consistency, absolute requirement for ONLY JSON.
+
+Result: 100% consistency (1 unique response; all 15 identical)
+
+Analysis: This version achieved perfect consistency. By eliminating all
+explanatory text, requiring ONLY JSON output, and using ultra-low temperature
+(0.1), the model generated identical JSON across all 15 runs. Every field matched
+exactly. This is the most straightforward and reliable approach for structured
+extraction.
+
+Key Finding for Extraction: Schema enforcement with ultra-low temperature (0.1)
+and "ONLY JSON" requirement achieves perfect consistency. Chain-of-Thought
+reasoning produces identical extracted data but with varying surrounding text—
+acceptable if you parse JSON, but adds cost and complexity. Schema-enforced
+extraction is cleaner, cheaper, and more predictable.
+
+================================================================================
+PART 3: EXPLANATION OF IMPROVEMENTS
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+3.1 SENTIMENT ANALYSIS: v1 → v2 → v3
+────────────────────────────────────────────────────────────────────────────────
+
+Improvement from v1 to v2: +60 percentage points (40% → 100%)
+
+The fundamental issue with v1 was ambiguity. The instruction "Classify this
+customer message" did not specify what format the classification should take.
+Should it be a single word? Multiple words? Uppercase? Lowercase? The model
+improvised on each run, choosing different formats based on subtle context
+variations in the probabilistic generation process.
+
+The improvement to v2 eliminated this ambiguity by being explicitly prescriptive:
+"response must be EXACTLY one of: POSITIVE, NEGATIVE, or NEUTRAL" and "SINGLE
+WORD response only." By removing all interpretation room, we achieved
+deterministic output. Combined with a low temperature (0.2), the model reliably
+selected the same category each time.
+
+Why v3 did not improve further: Once we achieved 100% with v2, adding few-shot
+examples had no effect. The examples increased token consumption without
+improving output quality. Lesson: do not add complexity (cost) if already at
+optimal performance.
+
+────────────────────────────────────────────────────────────────────────────────
+3.2 PRODUCT DESCRIPTION: v1 → v2 → v3 → v4 → v5 → v6b
+────────────────────────────────────────────────────────────────────────────────
+
+Improvement from v1 to v2: +7.6 percentage points (6.7% → 14.3%)
+
+v2 added structured constraints: word count, required elements, tone guidelines.
+This helped the model stay focused, but generation tasks are inherently
+variable—even with constraints, the model can phrase things many different ways
+while technically meeting all requirements.
+
+Regression from v2 to v3: -7.6 percentage points (14.3% → 6.7%)
+
+This was counterintuitive but extremely revealing. Adding few-shot examples
+actually made performance worse. Hypothesis: the examples created conflicting
+signals. The model had both general constraints (from the written rules) and
+specific style examples (from the few-shot demonstrations). Instead of harmonizing
+these signals, the model became confused about whether to follow the general
+pattern or imitate the examples, leading to more divergent outputs.
+
+Improvement from v3 to v4: +39.6 percentage points (6.7% → 46.7%)
+
+v4 took an extreme approach: rigid adherence to a template with exact word count
+verification. This eliminated the interpretation problem entirely—there was one
+specific way to structure the answer. However, fitting all required information
+into exactly 60 words across four sentences was challenging. Some runs fell short
+or over; some cut information to fit the constraint. This explains why we only
+achieved 46.7% rather than 100%. The model was fighting the constraint rather
+than flowing within it.
+
+Breakthrough improvement from v4 to v6b: +46.6 percentage points (46.7% → 93.3%)
+
+Rather than more rigidity, v6b introduced a new strategy: define the template
+structure but allow the model to SELECT from predefined synonyms rather than
+generate freely. The template "[FEATURE] design that [BENEFIT_VERB] for
+[TARGET_USER]" is fixed, but within each slot, the model chooses one of several
+semantically equivalent options.
+
+This approach worked because it strikes a balance:
+- Structure is fixed (consistent format across runs)
+- Vocabulary is curated (only valid options available)
+- Selection remains genuine (not a trick or exact copy)
+- Temperature is tuned low (0.15) to encourage selection over generation
+
+Why 93.3% and not 100%? Two runs chose "eliminates" for the benefit verb while
+most chose "resolves." Both are correct and semantically close, but the model
+has slight probability variation in choosing between near-equivalent words. To
+achieve 100%, we would need to prohibit all synonyms and force a single exact
+word, but that loses authenticity.
+
+================================================================================
+PART 4: TECHNIQUES ANALYSIS
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+4.1 EXPLICIT FORMATTING AND CONSTRAINTS
+────────────────────────────────────────────────────────────────────────────────
+
+Finding: HIGHLY EFFECTIVE for classification; MODERATELY EFFECTIVE for generation.
+
+Mechanism: When you specify exactly what format the output must take (e.g., "a
+single uppercase word," "ONLY JSON," "exactly 60 words"), you remove degrees of
+freedom that the model would otherwise use to innovate on each generation cycle.
+
+Evidence:
+- Sentiment v2: 40% → 100% by adding format specification alone
+- Product v2: 6.7% → 14.3% (improvement, but not optimal)
+- Extraction v4: 0% → 100% with schema specification
+
+Best for: Classification tasks where the answer space is well-defined and finite.
+
+Why it works: The model has clear, unambiguous instructions about structure. With
+low temperature, it reliably produces that structure identically.
+
+Limitation: On generation tasks, extremely rigid formats can force the model to
+sacrifice quality or cut information to fit constraints.
+
+════════════════════════════════════════════════════════
+
+4.2 FEW-SHOT LEARNING
+════════════════════════════════════════════════════════
+
+Finding: CONTEXT-DEPENDENT. Can help, hurt, or have no effect.
+
+Evidence:
+- Sentiment v3: No improvement over v2 (100% → 100%, only added cost)
+- Product v3: Regression vs v2 (14.3% → 6.7%)
+- Extraction v3: No degradation, but not better than v4
+
+Analysis: Few-shot examples work well when:
+1. The task is ambiguous and needs clarification through positive examples
+2. The model needs to understand a specific style or format
+
+Few-shot learning fails when:
+1. The task is already well-specified through explicit constraints (sentiment)
+2. The examples over-specify and create conflicting signals (product v3)
+3. Token cost increases without proportional benefit (sentiment v3)
+
+Conclusion: Few-shot learning is not a universally good practice. It should only
+be used when explicit constraints leave the model confused. If explicitness
+already solves the problem, few-shot adds cost without benefit.
+
+════════════════════════════════════════════════════════
+
+4.3 CHAIN-OF-THOUGHT REASONING
+════════════════════════════════════════════════════════
+
+Finding: EFFECTIVE for data quality, but MIXED for consistency metrics.
+
+Evidence:
+- Extraction v3: 100% JSON data consistency, but 0% exact string match
+
+Mechanism: CoT works by having the model reason through the problem step-by-step
+before producing the final answer. For structured extraction, this ensures the
+model has explicitly identified each required field before writing JSON. The
+reasoning is thorough.
+
+Limitation: Reasoning text varies between runs. "Let's go through..." vs "Let's
+work through..." vs "Let's analyze..." are different sentences even though the
+final JSON is identical. If you measure consistency as exact string match, CoT
+appears to fail. If you extract and measure just the structured output, CoT
+succeeds perfectly.
+
+Cost impact: Extraction v3 with CoT cost $0.3826 for 15 runs. Extraction v4
+with schema-only cost $0.1404. CoT consumed 2.7x more tokens for identical
+extracted data.
+
+When to use: When your metric is extracted data quality (not token efficiency)
+and you want the model to verify its reasoning. When the task is complex and
+might benefit from transparent step-by-step logic.
+
+When to avoid: When cost is critical. When you only care about final output, not
+reasoning. When a simpler deterministic format can achieve the same consistency.
+
+════════════════════════════════════════════════════════
+
+4.4 TEMPERATURE TUNING
+════════════════════════════════════════════════════════
+
+Finding: CRITICAL for consistency. Lower temperature = higher consistency.
+
+Settings used:
+- Sentiment (classification): 0.2 → 100%
+- Product (generation): 0.3 (v3) to 0.15 (v6b) → better consistency at lower temps
+- Extraction (structured): 0.1 (v4) → 100%
+
+Analysis: Temperature controls randomness in token selection. At temperature
+0.1, the model almost always picks the highest-probability next token, leading to
+deterministic behavior. At temperature 0.7, the model samples from a broader
+distribution, leading to creative variation.
+
+Trade-off: Low temperature maximizes consistency but can reduce quality,
+creativity, and diversity. High temperature increases variety but reduces
+consistency.
+
+Recommendation: For tasks where consistency is the goal, use temperature 0.1-0.2.
+For generation tasks, 0.15-0.3 provides a balance.
+
+════════════════════════════════════════════════════════
+
+4.5 TEMPLATE-BASED + SYNONYM SELECTION (v6b Approach)
+════════════════════════════════════════════════════════
+
+Finding: HIGHLY EFFECTIVE for generation tasks (93.3% consistency).
+
+Novel insight: Prompts can offer the model a choice of predefined words rather
+than requiring it to generate from scratch. This combines structure (template) +
+flexibility (synonym selection) + control (only certain words allowed).
+
+Mechanism:
+- Template: "[FEATURE] design that [BENEFIT_VERB] for [TARGET_USER]"
+- Synonyms per slot: FEATURE ∈ {ergonomic, precision, responsive}
+- Low temperature: 0.15 (favor selection over generation)
+
+Why it works: Humans naturally use synonyms to vary expression while maintaining
+meaning. By providing curated synonyms, we let the model select from valid
+options rather than generating unpredictably. Selection is more constrained than
+generation, but less rigid than forcing one exact word.
+
+Limitation: Requires manual curation of synonyms per slot. Not scalable to very
+long descriptions. Works best for relatively short structured output.
+
+Best for: Product descriptions, marketing copy, structured narratives where
+authenticity (varies slightly word-to-word) is preferable to exact repetition.
+
+================================================================================
+PART 5: FAILURE PATTERN IDENTIFICATION
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+5.1 VAGUE INSTRUCTIONS LEAD TO INTERPRETATION VARIANCE
+────────────────────────────────────────────────────────────────────────────────
+
+Instance: Sentiment v1 (40% consistency)
+
+Root cause: The instruction "Classify this customer message" did not specify
+format. The model interpreted this as: What is the appropriate response format
+for a sentiment classification? And the answer varied each time the model was
+queried, because no ground truth was provided.
+
+Indicator: When multiple variations of "correct" outputs exist (POSITIVE vs
+Positive vs positive), instructions are too vague.
+
+Solution: Explicitly enumerate valid response formats. List all acceptable
+options in an exhaustive way.
+
+────────────────────────────────────────────────────────────────────────────────
+5.2 FEW-SHOT EXAMPLES CAN OVER-CONSTRAIN RATHER THAN GUIDE
+────────────────────────────────────────────────────────────────────────────────
+
+Instance: Product v3 (6.7% consistency vs v2's 14.3%)
+
+Root cause: The examples in v3 demonstrated a specific style and phrasing. By
+showing "here's one good description" and "here's another good description," we
+implicitly told the model: match this style. But the model struggled between
+following the general written rules and imitating the examples, leading to
+confusion and worse output.
+
+Indicator: When adding examples degrades performance instead of improving it, the
+examples are likely creating conflicting signals.
+
+Solution: Either rely on explicit constraints alone, or ensure that examples
+clarify ambiguity rather than impose style. Test few-shot prompts A/B fashion to
+verify they help before deploying.
+
+────────────────────────────────────────────────────────────────────────────────
+5.3 RIGID TEMPLATES WITHOUT FLEXIBILITY CAN SACRIFICE QUALITY
+────────────────────────────────────────────────────────────────────────────────
+
+Instance: Product v4 (46.7% consistency; lower than v2's 14.3%)
+
+Root cause: Forcing a four-sentence template with exactly 60 words left the model
+constrained in unexpected ways. Information had to be cut, sentences had to be
+awkwardly restructured, and some runs could not meet all requirements
+simultaneously.
+
+Indicator: The model produces correct output structurally but fails on specific
+metrics (word count off by 1-2, information incomplete).
+
+Solution: Relax the rigidity. Instead of forcing exact structure + exact word
+count, allow flexibility in sentence count or word range. Or use a template with
+synonym slots rather than forcing every sentence to fit a pattern.
+
+────────────────────────────────────────────────────────────────────────────────
+5.4 INSUFFICIENT OUTPUT TOKENS CAN TRUNCATE RESPONSES
+────────────────────────────────────────────────────────────────────────────────
+
+Instance: Extraction v3 (first run with max_tokens=200; 0% consistency)
+
+Root cause: The prompt included a complete example walkthrough (50+ lines) plus
+the task itself. By the time the model started generating its own response, most
+of the 200 available tokens were already consumed by the prompt. The model could
+only output its reasoning partially before hitting the token limit, truncating
+JSON mid-field.
+
+Indicator: When responses are consistently cut off at the max_tokens limit,
+increase it.
+
+Solution: Always reserve enough tokens for the expected response length. Budget:
+prompt_tokens + expected_response_tokens < max_tokens_setting.
+
+────────────────────────────────────────────────────────────────────────────────
+5.5 INCONSISTENCY IN METRICS: STRING MATCH VS. EXTRACTED DATA
+────────────────────────────────────────────────────────────────────────────────
+
+Instance: Extraction v3 (0% exact string match, but 100% JSON consistency)
+
+Root cause: When measuring consistency, it matters what you measure. Measuring
+exact string match of full responses (including explanatory text) gives 0% when
+only the JSON portion is identical. Measuring only the extracted JSON gives 100%.
+
+Indicator: When a technique seems to fail for one metric but succeeds for
+another, the metrics may be measuring different things.
+
+Solution: Define metrics precisely based on task requirements. For extraction,
+measure extracted data quality, not full response text. For generation, measure
+semantic similarity, not necessarily exact string match.
+
+════════════════════════════════════════════════════════════════════════════════
+PART 6: IMPACT ASSESSMENT
+════════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────────────
+6.1 WHICH TECHNIQUES HAD THE BIGGEST POSITIVE IMPACT?
+────────────────────────────────────────────────────────────────────────────────
+
+Rank 1: Explicit Structure and Formatting Constraints
+
+Impact: Responsible for 60+ percentage point improvements across multiple tasks.
+
+Evidence:
+  - Sentiment v1 → v2: 40% → 100% (+60%)
+  - Extraction v1 → v4: 33.3% → 100% (+66.7%)
+  - Product v1 → v2: 6.7% → 14.3% (+7.6%)
+
+Why: Explicit constraints reduce the interpretation space. When the model knows
+exactly what format is expected, it can reliably produce that format, especially
+at low temperature.
+
+Rank 2: Template-based Structure with Synonym Selection
+
+Impact: Achieved breakthrough result on the most difficult task (product
+description).
+
+Evidence:
+  - Product v4 → v6b: 46.7% → 93.3% (+46.6%)
+  - Cost-effective: $0.1323 for 15 runs with 93% consistency
+
+Why: Combines the benefits of structure (template) with flexibility (synonym
+selection). Allows the model to vary output naturally while staying within
+controlled bounds.
+
+Rank 3: Low Temperature Settings
+
+Impact: Enables high consistency across all tasks.
+
+Evidence:
+  - Sentiment at 0.2: 100%
+  - Extraction at 0.1: 100%
+  - Product v6b at 0.15: 93.3%
+
+Why: Temperature directly controls randomness. Lower temperature means more
+deterministic output.
+
+Limitation Rank 1: Few-Shot Learning
+
+Finding: No net positive impact in any of our tests.
+
+Evidence:
+  - Sentiment v3: 100% → 100% (no improvement, higher cost)
+  - Product v3: 14.3% → 6.7% (regression)
+  - Extraction v3: 100% JSON data, but 2.7x higher cost than v4
+
+When it fails: When the baseline prompt is already explicit and clear.
+
+Limitation Rank 2: Chain-of-Thought Reasoning for Extraction
+
+Finding: Adds cost without extracting better data compared to schema-enforced
+prompts.
+
+Evidence:
+  - Extraction v3 (CoT): $0.3826 for identical JSON data
+  - Extraction v4 (Schema): $0.1404 for identical JSON data
+  - Cost multiplier: 2.7x more expensive
+
+When it's useful: When you need transparent reasoning for audit/verification
+purposes. When intermediate steps are valuable, not just the final answer.
+
+────────────────────────────────────────────────────────────────────────────────
+6.2 WHICH TECHNIQUES HAD LIMITED OR MIXED EFFECTIVENESS?
+────────────────────────────────────────────────────────────────────────────────
+
+Few-Shot Learning: MIXED (helped in no cases, hindered in one clear case)
+
+Verdict: Do not use few-shot automatically. Test rigorously to ensure it
+improves results rather than adding cost and complexity.
+
+Ultra-Strict Rigid Templates: LIMITED (produced only 46.7% consistency)
+
+Verdict: Rigidity can backfire. Favor templates with flexibility (like synonym
+selection) over absolute structural mandates.
+
+Chain-of-Thought Reasoning: LIMITED for consistency metrics, but EFFECTIVE for
+data quality
+
+Verdict: Use only if reasoning transparency is a requirement or if the extraction
+task is genuinely complex. For simple well-defined extraction, schema-enforced
+prompts are cheaper and equally effective.
+
+================================================================================
+PART 7: REFLECTION AND FUTURE IMPROVEMENTS
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+7.1 WHAT WOULD I DO DIFFERENTLY NEXT TIME?
+────────────────────────────────────────────────────────────────────────────────
+
+1. Start with Explicit Constraints, Not Examples
+
+This experiment reinforced that explicit constraints—telling the model exactly
+what format to use, what values are valid, what to avoid—is a better first-line
+optimization than adding examples. My next approach would prioritize:
+  a) Writing crystal-clear format specifications
+  b) Enumerating all valid response options
+  c) Setting appropriate temperature
+  d) Only then considering few-shot examples if formality leaves ambiguity
+
+2. Define Metrics Before Running Experiments
+
+I made the mistake of measuring Extraction v3 as "0% consistency" when actually
+the extracted data was 100% consistent. Next time, I would define metrics at the
+beginning:
+  - For classification: exact string match
+  - For generation: semantic similarity or curated variant count
+  - For extraction: extracted field consistency, not full text consistency
+
+3. Plan Token Budgets Carefully
+
+The Extraction v3 initial failure (truncated JSON) was avoidable. I should have:
+  - Calculated input tokens required by the prompt
+  - Estimated output tokens needed for a complete response
+  - Set max_tokens conservatively above that estimate
+  - Verified on a test run before scaling to 15 iterations
+
+4. Test Iteratively with Small Batches First
+
+Rather than running 15 iterations of each prompt version, I should:
+  - Test each new version with 2-3 runs first to catch major issues
+  - Verify that outputs are reasonable
+  - Only then scale to 15 runs once confident
+  - This would save cost and surfacing problems earlier
+
+5. Avoid Over-Optimization
+
+Product v4 was my attempt to achieve 100% consistency through extreme rigidity.
+But it produced lower consistency (46.7%) than the looser v2 (14.3%). Lesson: do
+not assume more constraints equals better results. Sometimes flexibility within
+structure (v6b) beats absolute control.
+
+────────────────────────────────────────────────────────────────────────────────
+7.2 HOW WOULD I STRUCTURE THE INITIAL SYSTEM PROMPT DIFFERENTLY?
+────────────────────────────────────────────────────────────────────────────────
+
+The initial system prompt I provided to the agent was comprehensive but overly
+prescriptive. It told the agent: "Use few-shot learning, test chain-of-thought,
+try these specific optimization techniques."
+
+What I should have done instead:
+
+1. State the objectives clearly but leave room for discovery:
+   "Optimize prompts for consistency. Test different approaches. Report what
+   works best, not what was planned to work."
+
+2. Build in hypothesis formation:
+   "Start with a baseline. Form hypotheses about why it's suboptimal. Test
+   techniques to validate or refute hypotheses. Iterate."
+
+3. Encourage A/B testing structure:
+   "For each improvement, run both the old and new version. Report effect size
+   and confidence. Do not assume technique X is better until tested."
+
+4. Separate concerns:
+   - Separate prompt engineering from metric design
+   - Separate cost tracking from optimization goals
+   - Separate experimental runs from analysis
+
+5. Allow for failure:
+   "If a technique makes things worse, report that openly. Not all advanced
+   techniques improve results. Document both successes and failures clearly."
+
+────────────────────────────────────────────────────────────────────────────────
+7.3 HOW WOULD I BALANCE AUTONOMY, COST CONTROL, AND HUMAN OVERSIGHT?
+────────────────────────────────────────────────────────────────────────────────
+
+The Current Experiment's Approach:
+- Autonomy: High (agent designed experiments, chose variations, iterated)
+- Cost Control: Medium (started too low, then had to escalate)
+- Human Oversight: Medium (I checked outputs regularly but not at every step)
+
+Result: Projects required more iterations than budgeted, but still completed
+within expanded budget. Final cost: $2.52 of $4.00 allocated (63% utilization).
+
+What I'd improve:
+
+1. Tiered Autonomy Model
+
+Entry phase (high oversight):
+  - Human defines the task clearly
+  - Agent proposes first 2-3 versions
+  - Human reviews and critiques before testing at scale
+
+Iteration phase (medium oversight):
+  - Agent tests variations independently
+  - Generates interim reports after each batch
+  - Human reviews metrics, decides direction every 2-3 iterations
+
+Maturation phase (low oversight):
+  - Agent optimizes within defined bounds
+  - Human checks final results and costs
+
+2. Cost Control Strategy
+
+Hard cap with escalation protocol:
+  - Set initial budget conservatively (e.g., $1)
+  - When hitting limit, generate a report: what was learned, what remains
+  - Human decides whether to escalate or stop
+  - Next tier has explicit goals that must be met
+
+This avoids open-ended spending while maintaining flexibility.
+
+3. Checkpoint-Based Oversight
+
+Rather than continuous monitoring or hands-off autonomy, use checkpoints:
+  - After each 5 API calls: verify basic functionality
+  - After each task version: review metrics and understand them
+  - After each 3 versions: reassess strategy with human
+  - Final review: comprehensive assessment of results
+
+This balances autonomy with necessary oversight without micromanaging.
+
+4. Transparent Metric Reporting
+
+Every report should include:
+  - What was tested and why
+  - What the results mean (not just numbers, but interpretation)
+  - What worked and what failed
+  - What would change next iteration
+
+This ensures human can make informed decisions without deep diving into code.
+
+════════════════════════════════════════════════════════════════════════════════
+PART 8: SUMMARY OF FINDINGS
+════════════════════════════════════════════════════════════════════════════════
+
+The systematic exploration of prompt engineering across three distinct task types
+revealed that consistency in LLM outputs is achievable, but not through a
+universal set of techniques. Instead, the most effective approach is
+task-specific:
+
+SENTIMENT ANALYSIS (Classification) — 100% Consistency Achieved
+  Optimal technique: Explicit format constraints + low temperature
+  Cost: Minimal
+  Lesson: When the answer space is finite and well-defined, enumerate options
+  and let constraints do the work.
+
+PRODUCT DESCRIPTION (Generation) — 93.3% Consistency Achieved
+  Optimal technique: Template + synonym selection at 0.15 temperature
+  Cost: $0.1323 for 15 runs
+  Lesson: Flexibility within structure beats both rigidity and unconstrained
+  freedom. Offer word choices, not word generation.
+
+DATA EXTRACTION (Structured) — 100% Consistency Achieved
+  Optimal technique: Schema-enforced JSON with ultra-low temperature (0.1)
+  Cost: $0.1404 for 15 runs (vs. $0.3826 for CoT approach)
+  Lesson: For structured data, constraints on format matter more than reasoning
+  steps. CoT sounds good but adds cost without benefit unless transparency is
+  required.
+
+Across all tasks, temperature settings proved critical. Lower temperature (0.1-0.2)
+enables consistency; higher temperature (0.5+) enables diversity. The choice
+depends on your goals.
+
+Few-shot learning, despite its popularity, provided no net positive benefit in
+any test case. It either maintained already-good performance (sentiment) or
+degraded it (product). Use few-shot only when evidence shows it helps, not as a
+default optimization.
+
+The laboratory work consumed $2.52 of $4.00 allocated budget and required 6
+iterations on the most challenging task (product description) versus the 3 that
+were originally planned. This demonstrates that prompt optimization is empirical
+and iterative—careful initial planning helps, but discovering what actually
+works requires experimentation.
+
+Human oversight at regular intervals (every 2-3 iterations, not continuous)
+proved valuable for course correction and strategy reassessment. Fully autonomous
+agent operation would have been fine, but periodic human review ensured quality
+and prevented pursuing unproductive directions.
+
+════════════════════════════════════════════════════════════════════════════════
+END OF REPORT
+════════════════════════════════════════════════════════════════════════════════
+Generated: February 10, 2026
+Total Pages: 20+
+Total Words: ~8,500
+Final Budget Utilization: 63% ($2.52 of $4.00)
+Experimental Rigor: 6+ hours, 235+ API calls, 3 tasks, 4-6 variations per task

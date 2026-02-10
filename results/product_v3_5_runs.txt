@@ -1,0 +1,36 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:52:15.569461
+Model: gpt-4o-mini
+Number of runs: 5
+Temperature: 0.7
+
+Prompt:
+------------------------------------------------------------
+Create product descriptions following this EXACT structure and word count.
+
+EXAMPLE 1:
+Product: Wireless Keyboard ($49.99)
+Description: Meet the TypeFlow Wireless Keyboard—precision typing meets wireless freedom. Designed for professionals who demand performance, this mechanical keyboard delivers responsive keystrokes and connects effortlessly via Bluetooth. With an 80-hour battery life and premium aluminum frame, it's built for desk warriors. Perfect for remote workers and developers seeking reliability. Invest in comfort today.
+
+EXAMPLE 2:
+Product: USB-C Hub ($39.99)
+Description: The ConnectHub Pro transforms your laptop into a powerhouse. This all-in-one USB-C hub delivers four ports, supporting simultaneous charging and data transfer at blazing speeds. Compact yet robust, it's ideal for minimalists and travelers. Compatible with Mac and Windows systems. The perfect sidekick for mobile professionals who refuse to compromise.
+
+YOUR TASK (same structure):
+Product: Wireless Mouse ($29.99)
+- Keep description between 50-75 words
+- Include all key features, price, and target user
+- Use professional but inspiring tone
+- End with a strong value proposition
+
+Create the description:
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (ERROR) ---
+Failed: Budget would be exceeded. Estimated cost: $0.018870
+
+============================================================
+Total cost for 0 responses: $0.000000

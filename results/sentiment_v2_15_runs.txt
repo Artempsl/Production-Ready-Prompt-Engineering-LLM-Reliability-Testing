@@ -1,0 +1,66 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:43:22.570450
+Model: gpt-4o-mini
+Number of runs: 15
+Temperature: 0.3
+
+Prompt:
+------------------------------------------------------------
+Classify the sentiment of this customer message with a SINGLE WORD response only.
+The response must be exactly one of: POSITIVE, NEGATIVE, or NEUTRAL.
+
+Message: "I love this product! It's exactly what I needed."
+
+Response:
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 2 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 3 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 4 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 5 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 6 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 7 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 8 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 9 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 10 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 11 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 12 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 13 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 14 (Cost: $0.001830) ---
+POSITIVE
+
+--- Response 15 (Cost: $0.001830) ---
+POSITIVE
+
+============================================================
+Total cost for 15 responses: $0.027450

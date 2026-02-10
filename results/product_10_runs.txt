@@ -1,0 +1,274 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:30:46.651791
+Model: gpt-4o-mini
+Number of runs: 10
+Temperature: 0.7
+
+Prompt:
+------------------------------------------------------------
+Create a product description for a wireless mouse that costs $29.99.
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.025020) ---
+**Product Name: SwiftClick Wireless Mouse**
+
+**Price: $29.99**
+
+**Product Description:**
+
+Elevate your computing experience with the SwiftClick Wireless Mouse, the perfect blend of style, comfort, and functionality. Designed with the modern user in mind, this sleek wireless mouse offers a seamless and efficient navigation experience for both work and play.
+
+**Key Features:**
+
+- **Ergonomic Design:** The SwiftClick is crafted to fit comfortably in your hand, reducing strain during long hours of use. Its contoured shape ensures a natural grip, allowing for effortless scrolling and clicking.
+
+- **Reliable Wireless Connectivity:** Say goodbye to tangled cords! With advanced 2.4GHz wireless technology, enjoy a stable connection up to 33 feet away. The plug-and-play USB receiver makes setup a breeze—just plug it in and you're ready to go!
+
+- **Precision Tracking:** Equipped with a high-precision optical sensor, this mouse provides smooth tracking on various surfaces, ensuring accurate movements whether you're working on a desk, couch, or even your lap.
+
+- **Long Battery Life:** Enjoy extended usage with a power-efficient design that can last up to 12 months on a single AA battery (included). Plus, the auto-sleep feature helps conserve battery life when not in use.
+
+- **Customizable Buttons:** Tailor your workflow with programmable buttons. Easily set up shortcuts for your most-used functions, enhancing your productivity and making tasks more efficient.
+
+- **Stylish Variety:** Available in multiple colors, the SwiftClick Wireless Mouse not only performs well but also looks great on any desk setup. Choose the one that matches your personality!
+
+**Why Choose SwiftClick?**
+
+At just $29.99, the SwiftClick Wireless Mouse combines affordability with premium features, making it the ideal choice for students, professionals, and gamers alike. Upgrade your workspace today with this reliable, stylish, and ergonomic wireless mouse that keeps you connected and productive.
+
+**Order now and experience the freedom of wireless computing with the SwiftClick Wireless Mouse!**
+
+--- Response 2 (Cost: $0.025500) ---
+**Product Name:** SleekConnect Wireless Mouse
+
+**Price:** $29.99
+
+**Product Description:**
+
+Elevate your computing experience with the SleekConnect Wireless Mouse, designed for both functionality and style. Priced at just $29.99, this mouse combines cutting-edge technology with an ergonomic design to provide seamless navigation whether you're at home, in the office, or on the go.
+
+**Key Features:**
+
+- **Reliable Wireless Connectivity:** Enjoy the freedom of wireless technology with a strong 2.4GHz connection that ensures a lag-free experience. Simply plug in the USB receiver, and you’re ready to go—no software installation required!
+
+- **Ergonomic Design:** Crafted for comfort, the SleekConnect fits perfectly in your hand, reducing strain during long hours of use. Its contoured shape and textured grip make it easy to maneuver, whether you’re browsing, gaming, or working on projects.
+
+- **Adjustable DPI Settings:** Tailor your mouse sensitivity with adjustable DPI settings (800, 1200, 1600) to suit your preferences. Whether you need precision for detailed tasks or speed for quick scrolling, you’ll have complete control at your fingertips.
+
+- **Long-lasting Battery Life:** Say goodbye to frequent battery changes! The SleekConnect features an energy-efficient design that provides up to 12 months of battery life on a single AA battery, so you can focus on what matters most.
+
+- **Stylish Aesthetic:** Available in a range of modern colors, the SleekConnect Wireless Mouse complements any workspace with its sleek and minimalist design. It’s not just a tool; it’s a statement piece.
+
+- **Versatile Compatibility:** Compatible with Windows, macOS, and Linux, the SleekConnect is the perfect choice for any setup. Whether you’re a student, professional, or casual user, this mouse integrates seamlessly with your devices.
+
+Upgrade your desk setup with the SleekConnect Wireless Mouse for just $29.99. Experience the perfect blend of style, comfort, and performance—order yours today!
+
+--- Response 3 (Cost: $0.024540) ---
+**Product Name:** SleekConnect Wireless Mouse
+
+**Price:** $29.99
+
+**Product Description:**
+
+Elevate your productivity and style with the SleekConnect Wireless Mouse, the perfect companion for both work and play! Designed for comfort and efficiency, this sleek and modern mouse combines cutting-edge technology with an ergonomic shape, ensuring a seamless experience whether you're at your desk or on the go.
+
+**Key Features:**
+
+- **Wireless Freedom:** Enjoy the convenience of a clutter-free workspace with our advanced 2.4GHz wireless technology. Say goodbye to tangled cords and hello to effortless maneuverability!
+
+- **Precision Control:** Equipped with a high-precision optical sensor, the SleekConnect Wireless Mouse offers smooth tracking on various surfaces, making it ideal for both everyday tasks and intricate designs.
+
+- **Ergonomic Design:** Crafted with your comfort in mind, the mouse fits perfectly in your hand, reducing strain during long hours of use. The contoured shape and soft-touch finish provide a comfortable grip that you’ll love.
+
+- **Long Battery Life:** With an energy-efficient design, this mouse boasts an impressive battery life of up to 12 months on a single AA battery, ensuring you stay powered up for all your computing needs.
+
+- **Plug-and-Play Convenience:** Simply plug the USB receiver into your computer's port, and you're ready to go! No software installation required—just hassle-free connectivity.
+
+- **Stylish Aesthetics:** Available in a range of sleek colors, the SleekConnect Wireless Mouse not only performs great but also adds a touch of elegance to your workspace.
+
+**Why Choose the SleekConnect Wireless Mouse?**
+
+At just $29.99, this mouse is the perfect blend of affordability and functionality. Whether you're a student, a professional, or a casual user, the SleekConnect Wireless Mouse is designed to enhance your computing experience without breaking the bank.
+
+Upgrade your setup today and experience the freedom and precision of the SleekConnect Wireless Mouse!
+
+--- Response 4 (Cost: $0.023280) ---
+**Product Name: SwiftClick Wireless Mouse**
+
+**Price: $29.99**
+
+**Product Description:**
+
+Elevate your computing experience with the SwiftClick Wireless Mouse, designed for both comfort and precision. This sleek, modern mouse combines advanced technology with ergonomic design, making it the perfect companion for work or play.
+
+**Key Features:**
+
+- **Wireless Convenience:** Say goodbye to tangled cords! The SwiftClick connects effortlessly to your devices via a reliable 2.4GHz wireless connection, providing you with up to 33 feet of freedom. Just plug in the USB receiver, and you’re ready to go!
+
+- **Ergonomic Design:** Crafted with your comfort in mind, the SwiftClick fits naturally in your hand, reducing strain during long hours of use. The textured side grips ensure a secure hold, allowing for smooth navigation without fatigue.
+
+- **Precision Tracking:** Equipped with a high-definition optical sensor, this mouse offers adjustable DPI settings (800/1200/1600) for ultimate control. Whether you're navigating spreadsheets or gaming, experience seamless tracking on any surface.
+
+- **Long Battery Life:** Enjoy extended usage with the SwiftClick’s energy-efficient design. The mouse automatically enters sleep mode after 10 minutes of inactivity to conserve battery life, ensuring you won’t be caught off guard.
+
+- **Stylish Aesthetics:** Available in a range of vibrant colors, the SwiftClick Wireless Mouse not only enhances your productivity but also adds a touch of style to your workspace.
+
+- **Compatible with Multiple Devices:** Whether you’re using a laptop, desktop, or tablet, the SwiftClick is compatible with Windows, macOS, and Linux systems, making it a versatile addition to any tech setup.
+
+Upgrade your workspace with the SwiftClick Wireless Mouse today—where performance meets affordability at just $29.99! Experience the freedom of wireless technology, and click your way to productivity.
+
+--- Response 5 (Cost: $0.023700) ---
+**Product Description: Wireless Precision Mouse - $29.99**
+
+Elevate your computing experience with our Wireless Precision Mouse, designed for seamless navigation and ultimate comfort. Priced at just $29.99, this sleek and stylish mouse combines cutting-edge technology with ergonomic design, making it the perfect accessory for both work and play.
+
+**Key Features:**
+
+- **Wireless Convenience:** Say goodbye to tangled cords! Our advanced 2.4GHz wireless technology ensures a reliable connection with a range of up to 33 feet, giving you the freedom to move around without limitations.
+
+- **Ergonomic Design:** Crafted with your comfort in mind, the contoured shape fits perfectly in your hand, reducing strain during prolonged use. The textured grip provides added stability and control for precision movements.
+
+- **High-Precision Tracking:** Enjoy smooth and accurate cursor control with the high-resolution optical sensor, adjustable up to 2400 DPI. Whether you're browsing the web or working on detailed projects, this mouse adapts to your needs.
+
+- **Long Battery Life:** Forget the hassle of frequent battery changes! The Wireless Precision Mouse is designed for extended use, offering up to 12 months of battery life on a single AA battery (included). An automatic sleep mode helps conserve energy when not in use.
+
+- **Plug and Play:** Setting up your new mouse is a breeze! Simply plug the USB receiver into your computer and start using it instantly—no software installation required.
+
+- **Versatile Compatibility:** Compatible with Windows, macOS, and Linux operating systems, this mouse is perfect for any computer setup. Whether you're at home, in the office, or on the go, it’s the ideal companion for all your devices.
+
+Upgrade your workspace with the Wireless Precision Mouse and experience the perfect blend of performance and style. Don't miss out on this unbeatable offer at just $29.99—order yours today and enjoy wireless freedom like never before!
+
+--- Response 6 (Cost: $0.029640) ---
+**Product Name:** SwiftClick Wireless Mouse
+
+**Price:** $29.99
+
+**Product Description:**
+
+Experience the freedom of movement with the SwiftClick Wireless Mouse, designed for the modern user who values both style and functionality. Priced at just $29.99, this sleek and ergonomic mouse combines cutting-edge technology with a comfortable grip, making it the perfect companion for your home office, coworking space, or on-the-go productivity.
+
+**Key Features:**
+
+- **Seamless Wireless Connectivity:** Enjoy a clutter-free workspace with a reliable 2.4GHz wireless connection, ensuring smooth and uninterrupted performance up to 33 feet away from your device.
+
+- **Ergonomic Design:** Crafted with your comfort in mind, the SwiftClick features a contoured shape that fits snugly in your hand, reducing strain during extended use. Perfect for both left and right-handed users!
+
+- **High Precision Tracking:** Navigate with precision using our advanced optical sensor, offering up to 1600 DPI sensitivity. Whether you're browsing, gaming, or designing, experience fluid and responsive cursor control.
+
+- **Long Battery Life:** Forget frequent battery changes! The SwiftClick is equipped with an energy-efficient design that provides up to 12 months of battery life on a single AA battery, keeping you powered for longer.
+
+- **Plug-and-Play Convenience:** Setting up your SwiftClick is a breeze! Simply plug the USB receiver into your computer, and you're ready to go—no software installation required.
+
+- **Stylish Color Options:** Available in a range of trendy colors, the SwiftClick Wireless Mouse not only enhances your productivity but also adds a touch of personal flair to your workspace.
+
+**Why Choose SwiftClick?**
+At just $29.99, the SwiftClick Wireless Mouse is the ultimate blend of performance, comfort, and style. Elevate your computing experience today and enjoy a new level of productivity without the hassle of wires. Order now and discover the difference!
+
+**Customer Reviews:**
+⭐️⭐️⭐️⭐️⭐️ "Absolutely love this mouse! It’s comfortable and responsive, making my workflow so much easier." - Jessica T.
+
+⭐️⭐️⭐️⭐️⭐️ "Great value for the price! The battery life is impressive, and I love the color options." - Mark L. 
+
+Upgrade your setup with the SwiftClick Wireless Mouse and experience the ultimate in wireless convenience today!
+
+--- Response 7 (Cost: $0.022800) ---
+**Product Description: Wireless Precision Mouse**
+
+Elevate your computing experience with our sleek and stylish Wireless Precision Mouse, designed to provide unparalleled comfort and seamless functionality—all at an unbeatable price of just $29.99!
+
+**Key Features:**
+
+- **Ergonomic Design:** Crafted for comfort, our mouse fits perfectly in your hand, reducing strain during long hours of use. Enjoy a natural grip that supports your wrist and enhances productivity.
+
+- **Reliable Wireless Connectivity:** Say goodbye to tangled cords! With advanced 2.4 GHz wireless technology, experience a stable connection with a range of up to 33 feet. The included USB receiver ensures quick plug-and-play setup, making it compatible with all major operating systems.
+
+- **Long-lasting Battery Life:** Forget about constant battery changes! Our Wireless Precision Mouse boasts an energy-efficient design, providing up to 12 months of use on a single AA battery (included). 
+
+- **Customizable DPI Settings:** Tailor your mouse sensitivity to your needs with adjustable DPI settings (800, 1200, 1600). Whether you’re browsing, gaming, or designing, switch between precision and speed with ease.
+
+- **Sleek and Portable:** Lightweight and compact, this mouse is perfect for on-the-go use. Slip it into your laptop bag and take it anywhere—perfect for travel, work, or home use.
+
+- **Stylish Aesthetic:** Available in a range of trendy colors, our Wireless Precision Mouse not only performs well but also looks great on your desk. Choose the shade that matches your style!
+
+Upgrade your workspace with the Wireless Precision Mouse, where quality meets affordability. Perfect for students, professionals, and casual users alike, this mouse combines functionality and design in one fantastic package. Don't miss out—get yours today for just $29.99 and experience the freedom of wireless computing!
+
+--- Response 8 (Cost: $0.022080) ---
+**Product Description: Wireless Precision Mouse**
+
+Elevate your workspace with our Wireless Precision Mouse, designed for ultimate comfort and efficiency. Priced at just $29.99, this sleek and stylish mouse is the perfect companion for both work and play.
+
+**Key Features:**
+
+- **Seamless Wireless Connectivity**: Enjoy the freedom of wireless technology with a reliable 2.4 GHz connection. Simply plug in the USB receiver, and you're ready to go—no complicated setup required!
+
+- **Ergonomic Design**: Crafted for comfort, the Wireless Precision Mouse fits perfectly in your hand, reducing strain during extended use. Its contoured shape provides a natural grip, ensuring you stay productive all day long.
+
+- **High-Precision Tracking**: With an adjustable DPI setting (800-1600 DPI), experience smooth and accurate cursor control on various surfaces. Whether you’re editing documents or gaming, this mouse delivers the precision you need.
+
+- **Long Battery Life**: Forget about constant battery changes! The energy-efficient design offers up to 12 months of usage on a single AA battery, making it a hassle-free addition to your tech arsenal.
+
+- **Stylish Aesthetics**: Available in a variety of modern colors, the Wireless Precision Mouse not only performs well but also complements your personal style and workspace decor.
+
+- **Multimedia Controls**: Effortlessly navigate through your favorite media with built-in shortcut buttons for quick access to volume control and playback functions.
+
+Transform your daily computing experience with the Wireless Precision Mouse. Whether you're working from home, in the office, or on the go, this affordable and feature-rich mouse is the perfect fit for your lifestyle. Upgrade your setup today for just $29.99 and enjoy the blend of style, functionality, and convenience!
+
+--- Response 9 (Cost: $0.023520) ---
+**Product Name: SwiftClick Wireless Mouse**
+
+**Price: $29.99**
+
+**Product Description:**
+
+Elevate your computing experience with the SwiftClick Wireless Mouse, the perfect blend of functionality and style. Designed for both work and play, this sleek and ergonomic mouse provides the ultimate freedom of movement without the hassle of tangled wires.
+
+**Key Features:**
+
+- **Wireless Convenience:** Enjoy a seamless connection with advanced 2.4GHz technology, ensuring a lag-free experience up to 33 feet away from your device. Forget about the clutter of cords and enjoy the freedom to navigate your workspace.
+
+- **Ergonomic Design:** Crafted for comfort, the SwiftClick fits perfectly in your hand, reducing strain during long hours of use. The textured grip ensures a secure hold, allowing for precise control whether you're working on a project or browsing the web.
+
+- **Long-Lasting Battery Life:** Equipped with an energy-efficient design, this mouse offers weeks of uninterrupted use on a single AA battery (included). Plus, an automatic sleep mode helps preserve battery life when not in use.
+
+- **Customizable Buttons:** Tailor your experience with programmable buttons to streamline your workflow. Easily access shortcuts and improve your productivity with just a click.
+
+- **Universal Compatibility:** Effortlessly connect to your laptop, desktop, or tablet with plug-and-play functionality. Compatible with Windows, macOS, and Linux operating systems, the SwiftClick is your versatile companion no matter the setup.
+
+- **Sleek Aesthetic:** Available in a variety of colors, the SwiftClick Wireless Mouse complements any workspace, combining modern design with practical performance.
+
+Upgrade your everyday computing with the SwiftClick Wireless Mouse—where comfort meets cutting-edge technology. Whether you're a student, professional, or gamer, this affordable mouse is the perfect tool to enhance your productivity and style. Grab yours today for just $29.99 and experience the difference!
+
+--- Response 10 (Cost: $0.024900) ---
+**Product Name: SwiftConnect Wireless Mouse**
+
+**Price: $29.99**
+
+**Product Description:**
+
+Elevate your productivity with the SwiftConnect Wireless Mouse, designed for both comfort and efficiency. Priced at just $29.99, this sleek and stylish mouse combines cutting-edge technology with an ergonomic design to enhance your daily computing experience.
+
+**Key Features:**
+
+- **Seamless Wireless Connectivity:** Enjoy the freedom of movement with a reliable 2.4GHz wireless connection. The included USB receiver ensures a quick plug-and-play setup, allowing you to connect effortlessly to your laptop or desktop.
+
+- **Precision Tracking:** Equipped with an advanced optical sensor, the SwiftConnect offers precise tracking on various surfaces, making it perfect for both work and play. Whether you’re navigating spreadsheets or gaming, experience smooth and accurate cursor control.
+
+- **Ergonomic Design:** Say goodbye to discomfort during long hours of use. The SwiftConnect features a contoured shape that fits snugly in your hand, providing ultimate comfort and reducing strain on your wrist.
+
+- **Long-lasting Battery Life:** Forget about frequent battery changes. With its energy-efficient design, the SwiftConnect can last for months on a single AA battery, ensuring you stay productive without interruptions.
+
+- **Customizable Buttons:** Tailor your experience with programmable buttons that allow for quick access to your favorite functions and shortcuts, enhancing your workflow and efficiency.
+
+- **Stylish Aesthetic:** Available in a range of modern colors, the SwiftConnect Wireless Mouse not only performs well but also adds a touch of style to your workspace.
+
+**Why Choose SwiftConnect?**
+
+Whether you're a student, a professional, or simply someone who values comfort and functionality, the SwiftConnect Wireless Mouse is the perfect companion for your computing needs. With its affordable price and premium features, you can achieve peak performance without breaking the bank.
+
+**Upgrade your workspace today** with the SwiftConnect Wireless Mouse, and experience the perfect blend of style, comfort, and efficiency—all for just $29.99!
+
+============================================================
+Total cost for 10 responses: $0.244980

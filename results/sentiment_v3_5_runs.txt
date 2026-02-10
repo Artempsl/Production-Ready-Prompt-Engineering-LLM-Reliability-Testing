@@ -1,0 +1,34 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:51:20.585728
+Model: gpt-4o-mini
+Number of runs: 5
+Temperature: 0.3
+
+Prompt:
+------------------------------------------------------------
+Classify the sentiment of customer messages with a SINGLE WORD response only.
+The response must be exactly one of: POSITIVE, NEGATIVE, or NEUTRAL.
+
+EXAMPLES:
+Message: "This product is amazing! Highly recommended."
+Response: POSITIVE
+
+Message: "Terrible quality, broke after one day."
+Response: NEGATIVE
+
+Message: "It works as described."
+Response: NEUTRAL
+
+Now classify this message:
+Message: "I love this product! It's exactly what I needed."
+Response:
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (ERROR) ---
+Failed: Budget would be exceeded. Estimated cost: $0.015120
+
+============================================================
+Total cost for 0 responses: $0.000000

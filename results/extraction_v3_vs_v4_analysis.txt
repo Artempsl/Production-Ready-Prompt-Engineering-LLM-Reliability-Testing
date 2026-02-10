@@ -1,0 +1,103 @@
+
+======================================================================
+DATA EXTRACTION: v3 (Chain-of-Thought) vs v4 (Schema-Enforced)
+======================================================================
+Generated: 2026-02-10T17:59:00.693947
+
+TECHNIQUE COMPARISON
+======================================================================
+
+v3: CHAIN-OF-THOUGHT REASONING (CoT)
+  Description: Step-by-step reasoning before extraction
+  Temperature: 0.3
+  Structure:
+    - Example walkthrough of 4-step process
+    - Student follows same steps for new input
+    - Reasoning shown before JSON output
+    - Emphasis on thinking before answering
+  Consistency: 0.0% (15 unique responses)
+  Cost: $0.382620
+
+v4: SCHEMA-ENFORCED EXTRACTION
+  Description: Explicit JSON schema with field validation
+  Temperature: 0.1
+  Structure:
+    - Exact JSON schema format specified
+    - Clear field-by-field extraction rules
+    - One-word constraints on values
+    - No extra text requirement
+  Consistency: 100.0% (0 unique responses)
+  Cost: $0.140400
+
+======================================================================
+RESULTS ANALYSIS
+======================================================================
+
+Overall Winner: 🏆 v4 (Schema-Enforced)
+
+Consistency Advantage: 
+  - v4 achieves 100.0%
+  - v3 achieves 0.0%
+  - Difference: +100.0 percentage points
+
+Cost Comparison:
+  - v4 cost: $0.140400
+  - v3 cost: $0.382620
+  - Cost difference: $+0.242220
+
+Cost-Efficiency (consistency per dollar):
+  - v4: 712.3% per cent
+  - v3: 0.0% per cent
+
+======================================================================
+KEY FINDINGS
+======================================================================
+
+1. SCHEMA-ENFORCEMENT BEATS REASONING
+   v4's explicit JSON schema achieves 100.0% consistency
+   v3's step-by-step reasoning achieves 0.0% consistency
+   Finding: Constraint-based approach > reasoning-based approach for structured extraction
+
+2. TEMPERATURE IMPACT
+   v4 uses temperature 0.1 (low creativity, high consistency)
+   v3 uses temperature 0.3 (moderate creativity for reasoning)
+   Finding: Ultra-low temperature critical for format compliance
+
+3. COST EFFECTIVENESS
+   v4 is more expensive than v3
+   Overall: Pick based on consistency needs, not cost
+
+======================================================================
+RECOMMENDATION FOR EXTRACTION TASKS
+======================================================================
+
+✓ PRIMARY APPROACH: Use v4 (Schema-Enforced) because:
+  - Achieves higher consistency (100.0%)
+  - Explicit JSON schema prevents format errors
+  - Field-level constraints ensure data validity
+  - Temperature 0.1 provides reliable structure
+
+✗ AVOID: Standalone Chain-of-Thought because:
+  - Lower consistency (0.0%)
+  - Reasoning steps may lead to incorrect extraction
+  - More tokens consumed per response
+
+✓ CONSIDER: CoT + Schema Combination (future iteration) 
+  - Combine reasoning explanation with strict JSON schema
+  - Could achieve best of both worlds
+  - Would increase cost but potentially improve accuracy
+
+======================================================================
+CONCLUSION
+======================================================================
+
+For data extraction tasks, SCHEMA-ENFORCED JSON (v4) significantly outperforms
+CHAIN-OF-THOUGHT REASONING (v3). The structured constraint approach is more 
+reliable than reasoning-based approaches for well-defined extraction tasks.
+
+This aligns with the broader pattern observed:
+- Classification: Format constraints win (Sentiment v2: 100%)
+- Generation: Format constraints + flexibility balance (Product v6b: 93.3%)
+- Extraction: Schema enforcement wins (Extraction v4: 100.0%)
+
+FINAL RECOMMENDATION: Deploy v4 for production extraction tasks.

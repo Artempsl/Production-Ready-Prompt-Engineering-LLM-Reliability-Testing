@@ -1,0 +1,61 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:32:40.936808
+Model: gpt-4o-mini
+Number of runs: 15
+Temperature: 0.7
+
+Prompt:
+------------------------------------------------------------
+Classify this customer message: "I love this product! It's exactly what I needed.
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.001710) ---
+The customer message can be classified as "Positive Feedback" or "Positive Review."
+
+--- Response 2 (Cost: $0.001710) ---
+This customer message can be classified as "Positive Feedback" or "Customer Praise."
+
+--- Response 3 (Cost: $0.001710) ---
+This customer message can be classified as "Positive Feedback" or "Customer Satisfaction."
+
+--- Response 4 (Cost: $0.001710) ---
+The customer message can be classified as "Positive Feedback" or "Customer Satisfaction."
+
+--- Response 5 (Cost: $0.001770) ---
+This customer message can be classified as **positive feedback** or **customer satisfaction**.
+
+--- Response 6 (Cost: $0.001770) ---
+The customer message can be classified as **Positive Feedback** or **Customer Satisfaction**.
+
+--- Response 7 (Cost: $0.001770) ---
+This customer message can be classified as **Positive Feedback** or **Customer Satisfaction**.
+
+--- Response 8 (Cost: $0.001710) ---
+The customer message can be classified as "Positive Feedback" or "Customer Praise."
+
+--- Response 9 (Cost: $0.001470) ---
+The customer message can be classified as **Positive Feedback**.
+
+--- Response 10 (Cost: $0.001470) ---
+The customer message can be classified as **Positive Feedback**.
+
+--- Response 11 (Cost: $0.001470) ---
+The customer message can be classified as **Positive Feedback**.
+
+--- Response 12 (Cost: $0.001710) ---
+The customer message can be classified as "Positive Feedback" or "Satisfaction."
+
+--- Response 13 (Cost: $0.001470) ---
+The customer message can be classified as **Positive Feedback**.
+
+--- Response 14 (Cost: $0.001770) ---
+This customer message can be classified as **Positive Feedback** or **Customer Satisfaction**.
+
+--- Response 15 (Cost: $0.001770) ---
+This customer message can be classified as **positive feedback** or **customer satisfaction**.
+
+============================================================
+Total cost for 15 responses: $0.024990

@@ -1,0 +1,78 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T17:01:55.939400
+Model: gpt-4o-mini
+Number of runs: 15
+Temperature: 0.05
+
+Prompt:
+------------------------------------------------------------
+COPY THIS EXACT TEMPLATE. DO NOT DEVIATE. EVERY WORD IS REQUIRED.
+
+PRODUCT: Wireless Mouse ($29.99)
+
+EXACT REQUIRED FORMAT (copy word-for-word):
+
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+INSTRUCTIONS:
+- Return ONLY the 4 sentences above
+- Do NOT change ANY words
+- Do NOT add extra words
+- Do NOT remove words
+- Do NOT paraphrase
+- Do NOT substitute synonyms
+- Exactly reproduce the structure above, nothing more
+
+Product description (exact copy):
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 2 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 3 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 4 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 5 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 6 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 7 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 8 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 9 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 10 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 11 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 12 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 13 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 14 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+--- Response 15 (Cost: $0.005580) ---
+Wireless Mouse is ergonomic. Enhance productivity with seamless navigation. For professionals seeking efficiency. Invest in comfort and precision at just $29.99.
+
+============================================================
+Total cost for 15 responses: $0.083700

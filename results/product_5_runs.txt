@@ -1,0 +1,134 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:28:50.330589
+Model: gpt-4o-mini
+Number of runs: 5
+Temperature: 0.7
+
+Prompt:
+------------------------------------------------------------
+Create a product description for a wireless mouse that costs $29.99.
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.021240) ---
+**Product Name: GlidePro Wireless Mouse**
+
+**Price: $29.99**
+
+**Description:**
+
+Experience seamless navigation and ultimate comfort with the GlidePro Wireless Mouse, designed for both productivity and leisure. Priced at an unbeatable $29.99, this sleek and modern mouse is the perfect companion for your laptop or desktop setup.
+
+**Key Features:**
+
+- **Wireless Freedom:** Say goodbye to tangled cords! The GlidePro connects effortlessly via a reliable 2.4GHz wireless connection, providing you with the freedom to move around without restrictions.
+
+- **Ergonomic Design:** Engineered for comfort, the ergonomic shape fits perfectly in your hand, reducing strain during long hours of use. The textured grips ensure a secure hold, whether you’re working on a project or gaming.
+
+- **Precision Tracking:** With an adjustable DPI (up to 2400), easily switch between high-speed scrolling and precise movements. Perfect for everything from detailed graphic work to fast-paced gaming.
+
+- **Long Battery Life:** Enjoy extended usage with the energy-efficient design, boasting up to 12 months of battery life on a single AA battery. A low-battery indicator ensures you’re never caught off guard.
+
+- **Plug-and-Play Convenience:** No software installation required! Simply plug the USB receiver into your device and start using it right away. Compatible with Windows, macOS, and Linux systems.
+
+- **Stylish Options:** Available in a variety of colors to suit your personal style and workspace aesthetics.
+
+Whether you’re a student, a professional, or a casual user, the GlidePro Wireless Mouse offers the perfect blend of functionality and style at an affordable price. Elevate your computing experience today for just $29.99!
+
+--- Response 2 (Cost: $0.022320) ---
+**Product Description: Wireless Ergonomic Mouse**
+
+Upgrade your workspace with our Wireless Ergonomic Mouse, designed for comfort, precision, and convenience—all at an unbeatable price of just $29.99! Whether you're working from home, in the office, or on the go, this sleek and stylish mouse is your perfect companion.
+
+**Key Features:**
+
+- **Ergonomic Design**: Crafted with your comfort in mind, the contoured shape fits naturally in your hand, reducing strain during long hours of use. Say goodbye to discomfort and hello to productivity!
+
+- **Wireless Freedom**: Enjoy the convenience of wireless technology with an impressive range of up to 33 feet. No more tangled cords or limited movement—just seamless navigation wherever you are.
+
+- **Precision Tracking**: Equipped with advanced optical sensor technology, our mouse delivers smooth and accurate tracking on various surfaces. Whether you're scrolling through documents or navigating complex design software, you'll experience pinpoint precision.
+
+- **Long Battery Life**: Forget about constant battery changes! The Wireless Ergonomic Mouse boasts an energy-efficient design, providing months of usage on a single AA battery (included). 
+
+- **Easy Setup**: Get started in seconds! Simply plug the USB receiver into your computer, and you're ready to go. Compatible with both Windows and Mac systems, this mouse fits seamlessly into your tech ecosystem.
+
+- **Sleek Aesthetics**: Available in a variety of modern colors, the Wireless Ergonomic Mouse not only enhances your productivity but also adds a touch of style to your desk setup.
+
+Elevate your computing experience without breaking the bank. With our Wireless Ergonomic Mouse at just $29.99, you can enjoy comfort, efficiency, and style all in one package. Order yours today and take the first step towards a more enjoyable workday!
+
+--- Response 3 (Cost: $0.024780) ---
+**Product Description: Wireless Precision Mouse - $29.99**
+
+Elevate your computing experience with our Wireless Precision Mouse, designed for comfort, efficiency, and style. Priced at an affordable $29.99, this sleek and ergonomic mouse is the perfect companion for your laptop or desktop, whether you're working from home, in the office, or on the go.
+
+**Key Features:**
+
+- **Seamless Wireless Connectivity:** Enjoy the freedom of wireless technology with a reliable 2.4 GHz connection. Say goodbye to tangled cords and hello to effortless navigation.
+
+- **Ergonomic Design:** Crafted with comfort in mind, the Wireless Precision Mouse fits perfectly in your hand, reducing strain during long hours of use. Its lightweight design makes it easy to carry in your bag or backpack.
+
+- **High Precision Tracking:** Equipped with advanced optical sensor technology, this mouse offers smooth and accurate tracking on a variety of surfaces. Whether you're scrolling through documents or playing games, you'll experience precise control and responsiveness.
+
+- **Long Battery Life:** Forget about constant battery changes! Our Wireless Precision Mouse boasts an impressive battery life, allowing you to work and play longer without interruptions. Plus, it features an automatic sleep mode to conserve power when not in use.
+
+- **Customizable Buttons:** Tailor your experience with programmable buttons that let you access your favorite functions with a simple click. Enhance your productivity and streamline your workflow effortlessly.
+
+- **Sleek Aesthetic:** Available in a selection of modern colors, this mouse complements any workspace, adding a touch of style to your setup.
+
+**Why Choose Our Wireless Precision Mouse?**
+At just $29.99, you get not only a high-quality wireless mouse but also a blend of performance, comfort, and convenience. Perfect for students, professionals, and gamers alike, this mouse is designed to meet your needs without breaking the bank.
+
+Upgrade your setup today with the Wireless Precision Mouse and experience the difference in your daily tasks. Order now and enjoy fast shipping and a satisfaction guarantee!
+
+--- Response 4 (Cost: $0.024360) ---
+**Product Name:** SwiftClick Wireless Mouse
+
+**Price:** $29.99
+
+**Product Description:**
+
+Elevate your computing experience with the SwiftClick Wireless Mouse, the perfect blend of style, comfort, and functionality. Designed for both home and office use, this sleek and ergonomic mouse offers seamless navigation and precision at your fingertips.
+
+**Key Features:**
+
+- **Wireless Freedom:** Say goodbye to tangled cords and enjoy the convenience of a 2.4GHz wireless connection. The USB receiver ensures a reliable link, allowing you to work up to 33 feet away from your device.
+
+- **Ergonomic Design:** Crafted to fit comfortably in your hand, the SwiftClick features a contoured shape that reduces wrist strain during extended use. Its lightweight design makes it easy to carry in your laptop bag, perfect for on-the-go professionals.
+
+- **Precision Tracking:** Equipped with an advanced optical sensor, this mouse delivers smooth and accurate tracking on a variety of surfaces. Whether you're editing documents or navigating through spreadsheets, experience responsive clicks and effortless scrolling.
+
+- **Long-lasting Battery Life:** Enjoy up to 12 months of battery life with just one AA battery (included). The automatic power-saving feature helps conserve energy, so you can focus on your tasks without the worry of frequent battery changes.
+
+- **Customizable Buttons:** Tailor your workflow with programmable buttons that can be easily configured to suit your needs. Switch between functions like copy, paste, or navigate back and forth with a single click.
+
+**Compatibility:** The SwiftClick Wireless Mouse is compatible with Windows, Mac, and Linux operating systems, making it a versatile addition to any setup.
+
+**Stylish Design:** Available in a range of modern colors, the SwiftClick not only performs well but also adds a touch of personality to your workspace.
+
+Upgrade your productivity and enjoy the freedom of wireless technology with the SwiftClick Wireless Mouse – your perfect partner for navigating the digital world. Get yours today for just $29.99!
+
+--- Response 5 (Cost: $0.020100) ---
+**Product Description: Wireless Ergonomic Mouse - $29.99**
+
+Elevate your computing experience with our Wireless Ergonomic Mouse, designed for comfort and efficiency. Priced at just $29.99, this sleek and stylish accessory is perfect for both home and office use.
+
+**Key Features:**
+
+- **Ergonomic Design:** Say goodbye to wrist strain! Our mouse features a contoured shape that fits comfortably in your hand, allowing for extended use without discomfort.
+
+- **Wireless Convenience:** Enjoy the freedom of movement with our 2.4GHz wireless technology. With a reliable connection and a range of up to 33 feet, you can navigate your workspace without being tethered to your computer.
+
+- **Long Battery Life:** Powered by a single AA battery (not included), our mouse boasts an impressive battery life that lasts up to 12 months, ensuring you can work longer without interruptions.
+
+- **Precision Tracking:** Equipped with advanced optical sensors, this mouse offers precise tracking on various surfaces, allowing for smooth navigation whether you’re working on a desk, sofa, or even your bed.
+
+- **Easy Setup:** Plug-and-play simplicity means you can start using your new mouse in seconds. Just plug the USB receiver into your computer, and you’re ready to go!
+
+- **Stylish Design:** Available in multiple colors, our wireless mouse not only performs well but also adds a touch of personal style to your workspace.
+
+Upgrade your computer setup with our Wireless Ergonomic Mouse. Perfect for professionals, students, or anyone who values comfort and functionality. Order yours today for just $29.99 and experience the difference!
+
+============================================================
+Total cost for 5 responses: $0.112800

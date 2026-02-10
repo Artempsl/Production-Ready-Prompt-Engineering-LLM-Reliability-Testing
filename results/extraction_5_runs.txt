@@ -1,0 +1,56 @@
+=== PROMPT TESTING RESULTS ===
+Timestamp: 2026-02-10T15:29:25.489597
+Model: gpt-4o-mini
+Number of runs: 5
+Temperature: 0.7
+
+Prompt:
+------------------------------------------------------------
+Extract information from this customer feedback: "I ordered item #12345 on March 15th. The delivery was fast but the packaging was damaged.
+------------------------------------------------------------
+
+Responses:
+============================================================
+
+--- Response 1 (Cost: $0.003930) ---
+Here are the extracted details from the customer feedback:
+
+- **Order Number**: #12345
+- **Order Date**: March 15th
+- **Delivery Speed**: Fast
+- **Packaging Condition**: Damaged
+
+--- Response 2 (Cost: $0.003690) ---
+Here’s the extracted information from the customer feedback:
+
+- **Order Number:** 12345
+- **Order Date:** March 15th
+- **Delivery Speed:** Fast
+- **Packaging Condition:** Damaged
+
+--- Response 3 (Cost: $0.003690) ---
+Here is the extracted information from the customer feedback:
+
+- **Order Number:** #12345
+- **Order Date:** March 15th
+- **Delivery Speed:** Fast
+- **Packaging Condition:** Damaged
+
+--- Response 4 (Cost: $0.003690) ---
+Here’s the extracted information from the customer feedback:
+
+- **Order Number:** #12345
+- **Order Date:** March 15th
+- **Delivery Speed:** Fast
+- **Packaging Condition:** Damaged
+
+--- Response 5 (Cost: $0.003930) ---
+Here is the extracted information from the customer feedback:
+
+- **Order Number**: #12345
+- **Order Date**: March 15th
+- **Delivery Speed**: Fast
+- **Packaging Condition**: Damaged
+
+============================================================
+Total cost for 5 responses: $0.018930
