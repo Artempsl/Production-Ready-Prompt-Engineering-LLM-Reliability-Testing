@@ -1,5 +1,5 @@
 ================================================================================
-LABORATORY WORK REPORT: PROMPT ENGINEERING AND LLM OPTIMIZATION
+WORK REPORT: PROMPT ENGINEERING AND LLM OPTIMIZATION
 ================================================================================
 Generated: February 10, 2026
 Project: Systematic Prompt Engineering Investigation with Budget Constraints
@@ -10,7 +10,7 @@ Total Cost: $2.52 USD (of $4.00 budget allocated)
 PART 1: INTRODUCTION
 ================================================================================
 
-When I began this laboratory work, I decided to approach it using an autonomous
+When I began this work, I decided to approach it using an autonomous
 agent mode in VS Code—a deliberate decision to explore how much of the work
 could be accomplished with minimal direct intervention. To set this up, I created
 a comprehensive system prompt designed to guide the agent through every stage of
