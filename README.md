@@ -10,7 +10,7 @@
 
 ## Project Overview
 
-This is a comprehensive systematic investigation of prompt engineering techniques for improving LLM output consistency. We tested three distinct task types (classification, generation, structured extraction) with multiple prompt iterations to identify failure patterns, discover which techniques actually improve consistency, and document the path to 80-95% consistency across different task domains.
+This is a comprehensive systematic investigation of prompt engineering techniques for improving LLM output consistency. We tested three distinct task types (classification, generation, structured extraction) and documented the failure patterns, optimization strategies, and final recommendations.
 
 **Key Achievement**: Developed a **Template + Synonym Selection** approach that achieves **93.3% consistency** on the most challenging task (product description generation).
 
@@ -18,10 +18,10 @@ This is a comprehensive systematic investigation of prompt engineering technique
 
 ## Quick Navigation
 
-- **📊 [Failure Analysis Report](results/FAILURE_ANALYSIS_REPORT.txt)**: Detailed examination of all failures, patterns, and lessons learned
-- **🎓 [Laboratory Report](results/LABORATORY_REPORT_PROMPT_ENGINEERING.txt)**: Full academic-style report with introduction, findings, recommendations
-- **🧪 [Main Notebook](prompt_engineering_lab.ipynb)**: Executable Jupyter notebook (62 cells, fully documented)
-- **📁 [Results Directory](results/)**: All 23 output files with raw data and analysis
+- **📊 [Failure Analysis Report](FAILURE_ANALYSIS_REPORT.txt)**: Detailed examination of all failures, patterns, and lessons learned
+- **🎓 [Project Report](REPORT_PROMPT_ENGINEERING.txt)**: Full project report with introduction, findings, recommendations
+- **🧪 [Main Notebook](prompt_engineering.ipynb)**: Executable Jupyter notebook (62 cells, fully documented)
+- **📁 [Results Directory](results/)**: All output files with raw data and analysis
 
 ---
 
@@ -76,7 +76,7 @@ This is a comprehensive systematic investigation of prompt engineering technique
 
 ```
 d2/
-├── prompt_engineering_lab.ipynb              # 62-cell executable notebook (MAIN)
+├── prompt_engineering.ipynb                  # 62-cell executable notebook (MAIN)
 │   ├── PART 1: Environment setup & API init
 │   ├── PART 2: Baseline testing (v1)
 │   ├── PART 3: Format constraints (v2)
@@ -86,35 +86,28 @@ d2/
 │
 ├── requirements.txt                          # Dependencies
 │
-├── results/                                  # 23 output files
-│   ├── LABORATORY_REPORT_PROMPT_ENGINEERING.txt    [8500 words, Main Report]
-│   ├── FAILURE_ANALYSIS_REPORT.txt                 [6000 words, Root Causes]
-│   ├── IMPROVED_PROMPTS_DOCUMENTATION.txt          [Best practices guide]
+├── results/                                  # Output files
+│   ├── REPORT_PROMPT_ENGINEERING.txt            [project report]
+│   ├── FAILURE_ANALYSIS_REPORT.txt              [root causes]
+│   ├── IMPROVED_PROMPTS_DOCUMENTATION.txt       [best practices guide]
 │   │
-│   ├── sentiment_v1_5_runs.txt               # v1: 5 iterations
-│   ├── sentiment_v1_10_runs.txt              # v1: 10 iterations
-│   ├── sentiment_v1_15_runs.txt              # v1: 15 iterations
-│   ├── sentiment_v2_15_runs.txt              # v2: 15 iterations (100%)
-│   ├── sentiment_v3_15_runs.txt              # v3: 15 iterations (100%)
+│   ├── sentiment_v1_15_runs.txt                 # v1: 15 iterations (40%)
+│   ├── sentiment_v2_15_runs.txt                 # v2: 15 iterations (100%)
+│   ├── sentiment_v3_15_runs.txt                 # v3: 15 iterations (100%)
 │   │
-│   ├── product_v1_5_runs.txt                 # v1: 5 iterations
-│   ├── product_v1_10_runs.txt
-│   ├── product_v1_15_runs.txt
-│   ├── product_v2_15_runs.txt                # v2: 15 iterations (14.3%)
-│   ├── product_v3_15_runs.txt                # v3: 15 iterations (6.7% regression)
-│   ├── product_v3_5_runs.txt                 # v3: 5 iterations (earlier test)
-│   ├── product_v4_15_runs.txt                # v4: 15 iterations (46.7%)
-│   ├── product_v5_15_runs.txt                # v5: 15 iterations (100% fake)
-│   ├── product_v6_15_runs.txt                # v6: 15 iterations (20%)
-│   ├── product_v6b_15_runs.txt               # v6b: 15 iterations (93.3% ✅)
+│   ├── product_v1_15_runs.txt                   # v1: 15 iterations (6.7%)
+│   ├── product_v2_15_runs.txt                   # v2: 15 iterations (14.3%)
+│   ├── product_v3_15_runs.txt                   # v3: 15 iterations (6.7% regression)
+│   ├── product_v4_15_runs.txt                   # v4: 15 iterations (46.7%)
+│   ├── product_v5_15_runs.txt                   # v5: 15 iterations (100% fake)
+│   ├── product_v6_15_runs.txt                   # v6: 15 iterations (20%)
+│   ├── product_v6b_15_runs.txt                  # v6b: 15 iterations (93.3% ✅)
 │   │
-│   ├── extraction_v1_5_runs.txt              # v1: 5 iterations
-│   ├── extraction_v1_10_runs.txt
-│   ├── extraction_v1_15_runs.txt
-│   ├── extraction_v3_15_runs.txt             # v3 CoT: 15 iterations (100% data)
-│   ├── extraction_v4_15_runs.txt             # v4 Schema: 15 iterations (100%)
+│   ├── extraction_v1_15_runs.txt                # v1: 15 iterations (33.3%)
+│   ├── extraction_v3_15_runs.txt                # v3 CoT: 15 iterations (100% data)
+│   ├── extraction_v4_15_runs.txt                # v4 Schema: 15 iterations (100%)
 │   │
-│   └── extraction_v3_vs_v4_analysis.txt      # CoT vs Schema comparison
+│   └── extraction_v3_vs_v4_analysis.txt         # CoT vs Schema comparison
 │
 └── README.md                                 # This file
 ```
@@ -266,10 +259,10 @@ pip install -r requirements.txt
 ```
 
 ### Run Experiment
-1. Open `prompt_engineering_lab.ipynb` in VS Code
+1. Open `prompt_engineering.ipynb` in VS Code
 2. Run cells sequentially (PART 1 → PART 6)
 3. Monitor cost tracking in console output
-4. Results auto-saved to `results/` directory
+4. Results auto-saved to the `results/` directory
 
 **Estimated Runtime**: 45 minutes  
 **GPU Required**: No (API calls only)
@@ -279,8 +272,8 @@ pip install -r requirements.txt
 ## Documentation Files
 
 ### Main Reports (Read These First)
-1. **LABORATORY_REPORT_PROMPT_ENGINEERING.txt** (~8,500 words)
-   - Full academic report with introduction, methodology, findings
+1. **REPORT_PROMPT_ENGINEERING.txt** (~8,500 words)
+   - Full report with introduction, methodology, findings
    - Best for: Understanding the complete journey and approach
 
 2. **FAILURE_ANALYSIS_REPORT.txt** (~6,000 words)
@@ -325,7 +318,7 @@ pip install -r requirements.txt
 
 ## Author Notes
 
-This laboratory was conducted using autonomous agent mode in VS Code with periodic human oversight. The agent designed experiments, iterated through versions, and generated analysis independently. However, human review at 2-3 iteration checkpoints proved essential for course correction and strategy validation.
+This project was conducted using autonomous agent mode in VS Code with periodic human oversight. The agent designed experiments, iterated through versions, and generated analysis independently. The key lesson remains that prompt optimization is empirical, not theoretical: standard techniques don't always work, and the best approach depends on the task.
 
 The main learning: **Prompt optimization is empirical, not theoretical**. Standard techniques don't always work. Always test, measure honestly, and iterate based on evidence.
 
@@ -344,6 +337,5 @@ The main learning: **Prompt optimization is empirical, not theoretical**. Standa
 
 ---
 
-**Questions?** Refer to the detailed reports in `results/` directory or review the annotated notebook cells.
+**Questions?** Refer to the detailed reports in the `results/` directory or review the annotated notebook cells.
 
-5. Wait for approval before proceeding to Part 2
